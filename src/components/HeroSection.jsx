@@ -176,23 +176,67 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
         </div>
 
         <style>{`
-        /* Make hero sticky so the next section scrolls on top */
-        .hero-section-wrapper {
-          position: sticky;
-          top: 0;
-          height: 100vh;
-          width: 100%;
-          z-index: 1;
+        /* Sticky section logic for large viewports (> 1180px) */
+        @media (min-width: 1181px) {
+          .hero-section-wrapper {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            z-index: 1;
+          }
+
+          .hero-grid {
+            grid-template-columns: 1fr 1.05fr;
+            gap: 2rem;
+          }
+
+          .hero-dashboard {
+            max-width: 580px;
+            transform:
+              perspective(1400px)
+              rotateX(2deg)
+              rotateY(-6deg)
+              rotateZ(-3.5deg);
+          }
+
+          .sticky-note-real {
+            position: absolute;
+            top: -35px;
+            left: -25px;
+            width: 175px;
+            background: #fef08a;
+            padding: 0.85rem;
+            box-shadow: 10px 20px 35px rgba(0,0,0,0.35);
+            transform: rotate(-5deg);
+            border-radius: 2px;
+            z-index: 25;
+          }
+
+          .floating-code-card {
+            position: absolute;
+            bottom: -35px;
+            right: -25px;
+            width: 210px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+            padding: 0.85rem 1.1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: -10px 20px 40px rgba(0,0,0,0.6);
+            transform: rotate(2deg);
+            z-index: 25;
+          }
         }
 
         .hero-section {
           position: relative;
-          height: 100%;
+          min-height: 100vh;
           display: flex;
           align-items: center;
-          padding: 2rem 4rem;
+          padding: 2.5rem 3.5rem;
           background: #fbfaf8;
-          overflow: hidden;
+          overflow: visible;
         }
 
         /* Background Layer */
@@ -215,11 +259,10 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
           position: relative;
           z-index: 10;
           display: grid;
-          grid-template-columns: 1fr 1.25fr;
-          gap: 2.5rem;
           width: 100%;
-          max-width: 1800px;
+          max-width: 1700px;
           margin: 0 auto;
+          align-items: center;
         }
 
         /* Left Column Text */
@@ -227,14 +270,14 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding-top: 2rem;
+          padding-top: 1rem;
           z-index: 2;
         }
 
         .hero-top-label {
           display: flex;
           flex-direction: column;
-          margin-bottom: 2.5rem;
+          margin-bottom: 2rem;
         }
 
         .label-eng {
@@ -254,7 +297,7 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
 
         .headline-wrapper {
           position: relative;
-          margin-bottom: 2.5rem;
+          margin-bottom: 2rem;
           width: max-content;
         }
 
@@ -283,7 +326,7 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
 
         .serif-title {
           font-family: var(--font-serif);
-          font-size: clamp(4.5rem, 6.5vw, 7.5rem);
+          font-size: clamp(4rem, 5.8vw, 7rem);
           line-height: 0.95;
           font-weight: 600;
           letter-spacing: -0.01em;
@@ -315,28 +358,28 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
 
         .hero-subtext {
           font-family: var(--font-mono);
-          font-size: clamp(0.85rem, 1.1vw, 1.1rem);
+          font-size: clamp(0.85rem, 1.05vw, 1.05rem);
           color: #475569;
-          line-height: 1.8;
-          margin-bottom: 3.5rem;
-          max-width: 580px;
+          line-height: 1.75;
+          margin-bottom: 2.8rem;
+          max-width: 560px;
         }
 
         /* Buttons */
         .hero-cta-group {
           display: flex;
           gap: 1.2rem;
-          margin-bottom: 4rem;
+          margin-bottom: 3rem;
         }
 
         .btn-solid-dark {
           background: #0f172a;
           color: #ffffff;
           border: none;
-          padding: clamp(0.9rem, 1.2vw, 1.1rem) clamp(1.8rem, 2.2vw, 2.2rem);
+          padding: clamp(0.85rem, 1.1vw, 1rem) clamp(1.6rem, 2vw, 2rem);
           border-radius: 8px;
           font-family: var(--font-sans);
-          font-size: clamp(0.85rem, 1vw, 1rem);
+          font-size: clamp(0.85rem, 0.95vw, 0.95rem);
           font-weight: 600;
           display: flex;
           align-items: center;
@@ -351,10 +394,10 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
           background: transparent;
           color: #0f172a;
           border: 1px solid rgba(0,0,0,0.2);
-          padding: clamp(0.9rem, 1.2vw, 1.1rem) clamp(1.8rem, 2.2vw, 2.2rem);
+          padding: clamp(0.85rem, 1.1vw, 1rem) clamp(1.6rem, 2vw, 2rem);
           border-radius: 8px;
           font-family: var(--font-sans);
-          font-size: clamp(0.85rem, 1vw, 1rem);
+          font-size: clamp(0.85rem, 0.95vw, 0.95rem);
           font-weight: 600;
           cursor: pointer;
           transition: background 0.2s ease;
@@ -368,7 +411,7 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
         .currently-exploring {
           display: flex;
           flex-direction: column;
-          gap: 1.2rem;
+          gap: 1rem;
         }
 
         .exploring-header {
@@ -395,14 +438,14 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
         .exploring-pills {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.8rem;
+          gap: 0.7rem;
         }
 
         .pill {
-          padding: clamp(0.45rem, 0.6vw, 0.6rem) clamp(1rem, 1.2vw, 1.2rem);
+          padding: clamp(0.4rem, 0.55vw, 0.55rem) clamp(0.9rem, 1.1vw, 1.1rem);
           border-radius: 6px;
           font-family: var(--font-sans);
-          font-size: clamp(0.7rem, 0.8vw, 0.85rem);
+          font-size: clamp(0.7rem, 0.8vw, 0.82rem);
           font-weight: 600;
           border: none;
         }
@@ -423,7 +466,7 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
           align-items: center;
           justify-content: center;
           perspective: 1400px;
-          padding: 2rem 1.5rem 3rem 1.5rem;
+          padding: 3rem 2.5rem 3.5rem 2.5rem;
         }
 
         /* Soft Ambient Glow behind dashboard */
@@ -439,22 +482,13 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
           z-index: 1;
         }
 
-        /* Desktop FIXED 3D Transform & Upper-Right Positioning */
         .hero-dashboard {
           position: relative;
           width: 100%;
-          max-width: 720px;
-          right: 0;
-          top: 0;
           transform-origin: center center;
-          transform:
-            perspective(1400px)
-            rotateX(2deg)
-            rotateY(-8deg)
-            rotateZ(-4.5deg);
           filter:
-            drop-shadow(0 30px 45px rgba(0, 0, 0, 0.32))
-            drop-shadow(0 10px 20px rgba(60, 40, 120, 0.16));
+            drop-shadow(0 25px 45px rgba(0, 0, 0, 0.3))
+            drop-shadow(0 10px 20px rgba(60, 40, 120, 0.15));
           z-index: 10;
         }
 
@@ -478,23 +512,9 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
           border-radius: 16px;
         }
 
-        /* Floating Code Box - Positioned cleanly at bottom right of dashboard */
-        .floating-code-card {
-          position: absolute;
-          bottom: -20px;
-          right: 10px;
-          background: rgba(15, 23, 42, 0.95);
-          backdrop-filter: blur(16px);
-          padding: 1.1rem 1.3rem;
-          border-radius: 12px;
-          border: 1px solid rgba(255,255,255,0.15);
-          box-shadow: -10px 20px 40px rgba(0,0,0,0.6);
-          z-index: 20;
-        }
-
         .floating-code-card pre {
           font-family: var(--font-mono);
-          font-size: clamp(0.65rem, 0.8vw, 0.78rem);
+          font-size: clamp(0.65rem, 0.78vw, 0.76rem);
           color: #cbd5e1;
           margin: 0;
           line-height: 1.5;
@@ -504,20 +524,6 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
         .code-var { color: #e5c07b; }
         .code-bool { color: #d19a66; }
         .code-str { color: #98c379; }
-
-        /* Real Sticky Note - Positioned cleanly at bottom left of dashboard */
-        .sticky-note-real {
-          position: absolute;
-          bottom: -25px;
-          left: 10px;
-          width: clamp(180px, 20vw, 220px);
-          background: #fef08a;
-          padding: 1.1rem;
-          box-shadow: 10px 20px 40px rgba(0,0,0,0.35);
-          transform: rotate(2deg);
-          border-radius: 2px;
-          z-index: 20;
-        }
 
         .tape {
           position: absolute;
@@ -530,14 +536,14 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
 
         .checklist {
           list-style: none; padding: 0; margin: 0;
-          display: flex; flex-direction: column; gap: 0.5rem;
+          display: flex; flex-direction: column; gap: 0.45rem;
         }
 
         .checklist li {
           font-family: var(--font-handwriting);
-          font-size: clamp(0.9rem, 1.2vw, 1.15rem);
+          font-size: clamp(0.85rem, 1.1vw, 1.05rem);
           color: #1e293b;
-          display: flex; align-items: center; gap: 0.5rem;
+          display: flex; align-items: center; gap: 0.45rem;
           font-weight: 700;
         }
 
@@ -547,69 +553,181 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
           border-radius: 2px;
         }
 
-        /* Handwriting off to top right */
+        /* Right handwritten tag */
         .right-handwritten-tag {
           position: absolute;
-          top: -20px;
-          right: 20px;
+          top: -15px;
+          right: 15px;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 10px;
+          gap: 8px;
           text-align: center;
           z-index: 15;
         }
 
         .right-handwritten-tag span {
           color: #f8fafc;
-          font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+          font-size: clamp(1rem, 1.3vw, 1.3rem);
           line-height: 0.9;
         }
 
-        /* Responsive Breakpoints & Perspective Scaling */
-        @media (max-width: 1024px) {
-          .hero-grid { 
-            grid-template-columns: 1fr; 
-            gap: 4rem;
+        /* Medium screens & Laptops (769px to 1180px) */
+        @media (max-width: 1180px) and (min-width: 769px) {
+          .hero-section-wrapper {
+            position: relative;
+            height: auto;
+            min-height: auto;
           }
-          
+
+          .hero-section {
+            padding: 3.5rem 2rem 3rem 2rem;
+            min-height: auto;
+          }
+
+          .hero-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+          }
+
+          .hero-left {
+            padding-top: 0;
+          }
+
           .hero-right {
-            justify-content: center;
+            padding: 2rem 1.5rem;
             perspective: 1000px;
           }
 
           .hero-dashboard {
-            width: 90%;
-            right: 0;
-            top: 0;
+            width: 100%;
+            max-width: 480px;
             transform:
               perspective(1000px)
               rotateX(1deg)
-              rotateY(-5deg)
+              rotateY(-4deg)
               rotateZ(-2deg);
+          }
+
+          .sticky-note-real {
+            position: absolute;
+            top: -30px;
+            left: -20px;
+            width: 155px;
+            background: #fef08a;
+            padding: 0.75rem;
+            box-shadow: 8px 16px 30px rgba(0,0,0,0.3);
+            transform: rotate(-4deg);
+            z-index: 25;
+          }
+
+          .floating-code-card {
+            position: absolute;
+            bottom: -30px;
+            right: -20px;
+            width: 185px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+            padding: 0.75rem 0.9rem;
+            border-radius: 12px;
+            box-shadow: -8px 16px 30px rgba(0,0,0,0.5);
+            transform: rotate(2deg);
+            z-index: 25;
+          }
+
+          .right-handwritten-tag {
+            display: none;
           }
         }
 
+        /* Mobile Viewports (<= 768px) */
         @media (max-width: 768px) {
-          .hero-section-wrapper { position: relative; height: auto; }
-          .hero-section { padding: 4rem 1.5rem; }
+          .hero-section-wrapper {
+            position: relative;
+            height: auto;
+            min-height: auto;
+          }
+
+          .hero-section {
+            padding: 4rem 1.25rem 3rem 1.25rem;
+            min-height: auto;
+          }
+
+          .hero-grid {
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+          }
+
+          .hero-left {
+            padding-top: 0;
+          }
+
+          .serif-title {
+            font-size: clamp(2.8rem, 8vw, 4rem);
+          }
+
+          .hero-subtext {
+            margin-bottom: 2rem;
+          }
+
+          .hero-cta-group {
+            margin-bottom: 2.5rem;
+            flex-direction: column;
+            width: 100%;
+          }
+
+          .btn-solid-dark, .btn-outline-light {
+            justify-content: center;
+            width: 100%;
+          }
 
           .hero-right {
-            perspective: 800px;
+            padding: 0;
+            perspective: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
           }
 
           .hero-dashboard {
             width: 100%;
-            right: 0;
-            transform:
-              perspective(800px)
-              rotateX(0deg)
-              rotateY(-2deg)
-              rotateZ(-1deg);
+            max-width: 100%;
+            transform: none;
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.25));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
           }
 
-          .floating-code-card { display: none; }
-          .right-handwritten-tag { display: none; }
+          .sticky-note-real {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            margin-top: 1.5rem;
+            width: 100%;
+            max-width: 320px;
+            transform: rotate(-1deg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+          }
+
+          .floating-code-card {
+            position: relative;
+            bottom: auto;
+            right: auto;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 340px;
+            transform: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+          }
+
+          .right-handwritten-tag {
+            display: none;
+          }
+
+          .handwriting-stack {
+            display: none;
+          }
         }
       `}</style>
       </section>
