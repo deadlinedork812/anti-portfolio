@@ -34,14 +34,15 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
             >
               {/* Handwriting annotation */}
               <div className="handwriting-stack">
-                <span className="handwriting">Better</span>
-                <span className="handwriting" style={{ marginLeft: 15 }}>Products</span>
-                <span className="handwriting" style={{ marginLeft: 30 }}>Happier</span>
-                <span className="handwriting" style={{ marginLeft: 45 }}>Users</span>
+                <span className="handwriting">Ideas</span>
+                <span className="handwriting" style={{ marginLeft: 8 }}>Code</span>
+                <span className="handwriting" style={{ marginLeft: 16 }}>Test</span>
+                <span className="handwriting" style={{ marginLeft: 24 }}>Improve</span>
+                <span className="handwriting" style={{ marginLeft: 32 }}>Repeat.</span>
 
-                <svg className="curved-arrow-custom" width="50" height="40" viewBox="0 0 50 40" fill="none">
-                  <path d="M5 5 C 20 5, 30 15, 35 25" stroke="#4a5568" strokeWidth="1.5" strokeDasharray="3 3" fill="none" />
-                  <path d="M30 25 L 35 25 L 33 20" stroke="#4a5568" strokeWidth="1.5" fill="none" />
+                <svg className="curved-arrow-custom" width="55" height="45" viewBox="0 0 55 45" fill="none">
+                  <path d="M5 5 Q 35 5, 45 35" stroke="#475569" strokeWidth="1.5" strokeDasharray="3 3" fill="none" />
+                  <path d="M40 30 L 45 35 L 48 28" stroke="#475569" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
                 </svg>
               </div>
 
@@ -120,12 +121,240 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="angled-dashboard-container hero-dashboard"
             >
-              <div className="dash-mockup-wrapper">
-                <img
-                  src="/dashboard-mockup.png"
-                  alt="NOVA Analytics Dashboard"
-                  className="dash-mockup-img"
-                />
+              <div className="dash-mockup-wrapper finance-track-dark-dash">
+                {/* Left Sidebar */}
+                <div className="ft-sidebar">
+                  <div className="ft-brand">
+                    <div className="ft-logo-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.71.79-1.81.2-2.55L4.5 16.5z"/>
+                        <path d="M12 15l-3-3 7.5-7.5.5.5-5 7 3 3z"/>
+                        <path d="M15 12l3 3"/>
+                      </svg>
+                    </div>
+                    <span className="ft-brand-name">FinanceTrack</span>
+                  </div>
+
+                  <ul className="ft-nav-list">
+                    <li className="ft-nav-item active">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                        <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                      </svg>
+                      <span>Dashboard</span>
+                    </li>
+                    <li className="ft-nav-item">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 9V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><rect x="9" y="11" width="12" height="8" rx="2"/><path d="M13 15h.01"/></svg>
+                      <span>Transactions</span>
+                    </li>
+                    <li className="ft-nav-item">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>
+                      <span>Budgets</span>
+                    </li>
+                    <li className="ft-nav-item">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                      <span>Analytics</span>
+                    </li>
+                    <li className="ft-nav-item">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                      <span>Categories</span>
+                    </li>
+                    <li className="ft-nav-item">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                      <span>Reports</span>
+                    </li>
+                    <li className="ft-nav-item">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                      <span>Settings</span>
+                    </li>
+                  </ul>
+
+                  <div className="ft-sidebar-bottom">
+                    <button className="ft-collapse-btn">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="19 20 9 12 19 4 19 20"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Main Dashboard Content */}
+                <div className="ft-main">
+                  {/* Top Bar */}
+                  <div className="ft-topbar">
+                    <div className="ft-search-box">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2.5">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                      </svg>
+                      <input type="text" placeholder="Search transactions..." readOnly />
+                    </div>
+
+                    <div className="ft-top-actions">
+                      <div className="ft-filter-select">
+                        <span>Last 6 Months</span>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                      </div>
+
+                      <div className="ft-icon-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        <span className="dot" />
+                      </div>
+
+                      <div className="ft-avatar">
+                        <span>S</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Greeting Header */}
+                  <div className="ft-greeting">
+                    <h2>Good morning, Satvik</h2>
+                    <p>Here's your financial overview</p>
+                  </div>
+
+                  {/* 3 Metric Cards */}
+                  <div className="ft-metrics-grid">
+                    {/* Card 1: Total Balance */}
+                    <div className="ft-metric-card">
+                      <div className="ft-metric-icon icon-teal">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                      </div>
+                      <div className="ft-metric-info">
+                        <span className="ft-m-title">Total Balance</span>
+                        <span className="ft-m-val">₹1,24,580</span>
+                        <span className="ft-m-trend trend-up">+12% from last month</span>
+                      </div>
+                    </div>
+
+                    {/* Card 2: Monthly Expenses */}
+                    <div className="ft-metric-card">
+                      <div className="ft-metric-icon icon-pink">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                      </div>
+                      <div className="ft-metric-info">
+                        <span className="ft-m-title">Monthly Expenses</span>
+                        <span className="ft-m-val">₹31,240</span>
+                        <span className="ft-m-trend trend-down">-8% from last month</span>
+                      </div>
+                    </div>
+
+                    {/* Card 3: Savings */}
+                    <div className="ft-metric-card">
+                      <div className="ft-metric-icon icon-blue">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                      </div>
+                      <div className="ft-metric-info">
+                        <span className="ft-m-title">Savings</span>
+                        <span className="ft-m-val">₹42,000</span>
+                        <span className="ft-m-trend trend-up">+20% from last month</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Row Charts */}
+                  <div className="ft-charts-grid">
+                    {/* Dual Bar Chart: Expense Overview */}
+                    <div className="ft-chart-card ft-bar-card">
+                      <div className="ft-chart-head">
+                        <span className="ft-chart-title">Expense Overview</span>
+                        <div className="ft-legend-group">
+                          <span className="leg-item"><span className="leg-dot bg-blue"/> Income</span>
+                          <span className="leg-item"><span className="leg-dot bg-pink"/> Expenses</span>
+                        </div>
+                      </div>
+
+                      <div className="ft-bar-chart-wrap">
+                        {/* Tooltip Badge on Apr */}
+                        <div className="ft-tooltip-badge">
+                          <span className="tt-val">₹12,480</span>
+                          <span className="tt-sub">Apr 2024</span>
+                        </div>
+
+                        <svg viewBox="0 0 280 120" className="ft-bar-svg" preserveAspectRatio="none">
+                          {/* Gridlines */}
+                          <line x1="0" y1="30" x2="280" y2="30" stroke="rgba(255,255,255,0.05)" strokeDasharray="2 2" />
+                          <line x1="0" y1="65" x2="280" y2="65" stroke="rgba(255,255,255,0.05)" strokeDasharray="2 2" />
+                          <line x1="0" y1="100" x2="280" y2="100" stroke="rgba(255,255,255,0.08)" />
+
+                          {/* Jan */}
+                          <rect x="20" y="70" width="7" height="30" rx="2" fill="#3b82f6" />
+                          <rect x="30" y="82" width="7" height="18" rx="2" fill="#ec4899" />
+                          <text x="28" y="113" fontSize="8" fill="#64748b" textAnchor="middle">Jan</text>
+
+                          {/* Feb */}
+                          <rect x="62" y="48" width="7" height="52" rx="2" fill="#3b82f6" />
+                          <rect x="72" y="68" width="7" height="32" rx="2" fill="#ec4899" />
+                          <text x="70" y="113" fontSize="8" fill="#64748b" textAnchor="middle">Feb</text>
+
+                          {/* Mar */}
+                          <rect x="104" y="38" width="7" height="62" rx="2" fill="#3b82f6" />
+                          <rect x="114" y="75" width="7" height="25" rx="2" fill="#ec4899" />
+                          <text x="112" y="113" fontSize="8" fill="#64748b" textAnchor="middle">Mar</text>
+
+                          {/* Apr (Active Tooltip Month) */}
+                          <rect x="146" y="28" width="7" height="72" rx="2" fill="#3b82f6" />
+                          <rect x="156" y="58" width="7" height="42" rx="2" fill="#c084fc" />
+                          <text x="154" y="113" fontSize="8" fill="#f8fafc" fontWeight="bold" textAnchor="middle">Apr</text>
+
+                          {/* May */}
+                          <rect x="188" y="50" width="7" height="50" rx="2" fill="#3b82f6" />
+                          <rect x="198" y="78" width="7" height="22" rx="2" fill="#ec4899" />
+                          <text x="196" y="113" fontSize="8" fill="#64748b" textAnchor="middle">May</text>
+
+                          {/* Jun */}
+                          <rect x="230" y="42" width="7" height="58" rx="2" fill="#3b82f6" />
+                          <rect x="240" y="65" width="7" height="35" rx="2" fill="#a855f7" />
+                          <text x="238" y="113" fontSize="8" fill="#64748b" textAnchor="middle">Jun</text>
+                        </svg>
+                      </div>
+                    </div>
+
+                    {/* Donut Chart: Spending by Category */}
+                    <div className="ft-chart-card ft-donut-card">
+                      <div className="ft-chart-head">
+                        <span className="ft-chart-title">Spending by Category</span>
+                      </div>
+
+                      <div className="ft-donut-body">
+                        {/* Donut graphic */}
+                        <div className="ft-donut-graphic">
+                          <svg viewBox="0 0 100 100" className="ft-donut-svg">
+                            {/* Food 28% (#3b82f6) */}
+                            <circle cx="50" cy="50" r="38" fill="none" stroke="#3b82f6" strokeWidth="13" strokeDasharray="67 172" strokeDashoffset="0" />
+                            {/* Travel 10% (#a855f7) */}
+                            <circle cx="50" cy="50" r="38" fill="none" stroke="#a855f7" strokeWidth="13" strokeDasharray="24 215" strokeDashoffset="-69" />
+                            {/* Shopping 16% (#38bdf8) */}
+                            <circle cx="50" cy="50" r="38" fill="none" stroke="#38bdf8" strokeWidth="13" strokeDasharray="38 201" strokeDashoffset="-95" />
+                            {/* Bills 14% (#f97316) */}
+                            <circle cx="50" cy="50" r="38" fill="none" stroke="#f97316" strokeWidth="13" strokeDasharray="33 206" strokeDashoffset="-135" />
+                            {/* Entertainment 12% (#ec4899) */}
+                            <circle cx="50" cy="50" r="38" fill="none" stroke="#ec4899" strokeWidth="13" strokeDasharray="29 210" strokeDashoffset="-170" />
+                            {/* Others 12% (#10b981) */}
+                            <circle cx="50" cy="50" r="38" fill="none" stroke="#10b981" strokeWidth="13" strokeDasharray="29 210" strokeDashoffset="-201" />
+                          </svg>
+
+                          <div className="donut-center-info">
+                            <span className="d-val">₹31,240</span>
+                            <span className="d-sub">This Month</span>
+                          </div>
+                        </div>
+
+                        {/* Category List */}
+                        <ul className="ft-category-list">
+                          <li><span className="c-dot" style={{background:'#3b82f6'}}/> <span className="c-name">Food</span> <span className="c-pct">28%</span></li>
+                          <li><span className="c-dot" style={{background:'#a855f7'}}/> <span className="c-name">Travel</span> <span className="c-pct">10%</span></li>
+                          <li><span className="c-dot" style={{background:'#38bdf8'}}/> <span className="c-name">Shopping</span> <span className="c-pct">16%</span></li>
+                          <li><span className="c-dot" style={{background:'#f97316'}}/> <span className="c-name">Bills</span> <span className="c-pct">14%</span></li>
+                          <li><span className="c-dot" style={{background:'#ec4899'}}/> <span className="c-name">Entertainment</span> <span className="c-pct">12%</span></li>
+                          <li><span className="c-dot" style={{background:'#10b981'}}/> <span className="c-name">Others</span> <span className="c-pct">12%</span></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Non-overlapping Floating Code Card at bottom right */}
@@ -147,30 +376,34 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
                 </pre>
               </motion.div>
 
-              {/* Non-overlapping Sticky Note at bottom left */}
+              {/* Non-overlapping Sticky Note at bottom right (peach/coral color) */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
-                className="sticky-note-real"
+                className="sticky-note-peach"
               >
                 <div className="tape"></div>
-                <ul className="checklist">
-                  <li><span className="checkbox"></span> Solve real problems</li>
-                  <li><span className="checkbox"></span> Build with intent</li>
-                  <li><span className="checkbox"></span> Test beyond the happy path</li>
-                  <li><span className="checkbox"></span> Keep learning</li>
-                </ul>
+                <div className="peach-note-content">
+                  <p className="handwriting-peach">Real problems.</p>
+                  <p className="handwriting-peach">Real solutions.</p>
+                  <p className="handwriting-peach">That's the goal.</p>
+                  <div className="peach-arrow-wrap">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e11d48" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="19" y1="5" x2="5" y2="19"/>
+                      <polyline points="12 19 5 19 5 12"/>
+                    </svg>
+                  </div>
+                </div>
               </motion.div>
             </motion.div>
 
-            {/* Right handwritten tag */}
-            <div className="right-handwritten-tag">
-              <span className="handwriting-light">From<br />idea<br />to<br />impact.</span>
-              <svg className="down-arrow-hw" width="30" height="40" viewBox="0 0 30 40">
-                <path d="M10,0 Q15,20 0,35" stroke="#f8fafc" strokeWidth="1.5" fill="none" />
-                <path d="M0,35 L 5,30 M 0,35 L 8,38" stroke="#f8fafc" strokeWidth="1.5" fill="none" />
-              </svg>
+            {/* Top-Right vertical block text */}
+            <div className="right-block-tag">
+              <span>RELIABLE</span>
+              <span>SCALABLE</span>
+              <span>TESTABLE</span>
+              <span>USER-CENTRIC</span>
             </div>
           </div>
         </div>
@@ -192,41 +425,499 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
           }
 
           .hero-dashboard {
-            max-width: 580px;
+            max-width: 640px;
             transform:
               perspective(1400px)
-              rotateX(2deg)
-              rotateY(-6deg)
+              rotateX(4deg)
+              rotateY(7deg)
               rotateZ(-3.5deg);
           }
 
-          .sticky-note-real {
+          .sticky-note-peach {
             position: absolute;
-            top: -35px;
-            left: -25px;
-            width: 175px;
-            background: #fef08a;
-            padding: 0.85rem;
+            bottom: -35px;
+            right: -30px;
+            width: 190px;
+            background: #fecdd3;
+            padding: 0.9rem;
             box-shadow: 10px 20px 35px rgba(0,0,0,0.35);
-            transform: rotate(-5deg);
-            border-radius: 2px;
+            transform: rotate(3deg);
+            border-radius: 4px;
             z-index: 25;
           }
 
           .floating-code-card {
-            position: absolute;
-            bottom: -35px;
-            right: -25px;
-            width: 210px;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(16px);
-            padding: 0.85rem 1.1rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: -10px 20px 40px rgba(0,0,0,0.6);
-            transform: rotate(2deg);
-            z-index: 25;
+            display: none;
           }
+        }
+
+        /* FinanceTrack Dark Dashboard Component CSS */
+        .finance-track-dark-dash {
+          display: flex;
+          width: 100%;
+          background: #0f172a;
+          border-radius: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          box-shadow:
+            0 25px 50px -10px rgba(0,0,0,0.6),
+            0 10px 25px rgba(99, 102, 241, 0.15),
+            inset 0 1px 0 rgba(255,255,255,0.15);
+          overflow: hidden;
+          font-family: var(--font-sans);
+          color: #f8fafc;
+          text-align: left;
+        }
+
+        /* Sidebar */
+        .ft-sidebar {
+          width: 160px;
+          background: #0b0f19;
+          border-right: 1px solid rgba(255, 255, 255, 0.07);
+          padding: 1rem 0.75rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          flex-shrink: 0;
+        }
+
+        .ft-brand {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 1.25rem;
+          padding: 0 0.25rem;
+        }
+
+        .ft-logo-icon {
+          width: 26px;
+          height: 26px;
+          background: #6366f1;
+          border-radius: 6px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #ffffff;
+        }
+
+        .ft-brand-name {
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: #ffffff;
+          letter-spacing: -0.01em;
+        }
+
+        .ft-nav-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+
+        .ft-nav-item {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          padding: 0.45rem 0.6rem;
+          border-radius: 8px;
+          font-size: 0.72rem;
+          font-weight: 500;
+          color: #94a3b8;
+          cursor: pointer;
+          transition: all 0.15s ease;
+        }
+
+        .ft-nav-item.active {
+          background: #6366f1;
+          color: #ffffff;
+          font-weight: 600;
+          box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+        }
+
+        .ft-sidebar-bottom {
+          padding-top: 1rem;
+        }
+
+        .ft-collapse-btn {
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background: rgba(99, 102, 241, 0.2);
+          border: none;
+          color: #818cf8;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+
+        /* Main Panel */
+        .ft-main {
+          flex: 1;
+          background: #0f172a;
+          padding: 1rem 1.25rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.85rem;
+          overflow: hidden;
+        }
+
+        /* Top Bar */
+        .ft-topbar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.75rem;
+        }
+
+        .ft-search-box {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          background: #1e293b;
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 20px;
+          padding: 0.3rem 0.75rem;
+          width: 55%;
+        }
+
+        .ft-search-box input {
+          background: transparent;
+          border: none;
+          outline: none;
+          color: #f8fafc;
+          font-size: 0.68rem;
+          width: 100%;
+        }
+
+        .ft-top-actions {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .ft-filter-select {
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          background: #1e293b;
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 6px;
+          padding: 0.25rem 0.5rem;
+          font-size: 0.65rem;
+          color: #cbd5e1;
+          font-weight: 500;
+        }
+
+        .ft-icon-badge {
+          position: relative;
+          color: #94a3b8;
+          cursor: pointer;
+        }
+
+        .ft-icon-badge .dot {
+          position: absolute;
+          top: -1px;
+          right: -1px;
+          width: 5px;
+          height: 5px;
+          background: #ef4444;
+          border-radius: 50%;
+        }
+
+        .ft-avatar {
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          background: #818cf8;
+          color: #ffffff;
+          font-weight: 700;
+          font-size: 0.68rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Greeting */
+        .ft-greeting h2 {
+          font-size: 1.05rem;
+          font-weight: 700;
+          margin: 0;
+          color: #f8fafc;
+          letter-spacing: -0.01em;
+        }
+
+        .ft-greeting p {
+          font-size: 0.68rem;
+          color: #94a3b8;
+          margin: 0.1rem 0 0 0;
+        }
+
+        /* 3 Metric Cards Grid */
+        .ft-metrics-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.6rem;
+        }
+
+        .ft-metric-card {
+          background: #1e293b;
+          border: 1px solid rgba(255,255,255,0.06);
+          border-radius: 10px;
+          padding: 0.6rem 0.75rem;
+          display: flex;
+          align-items: flex-start;
+          gap: 0.5rem;
+        }
+
+        .ft-metric-icon {
+          width: 28px;
+          height: 28px;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+        .icon-teal { background: rgba(20, 184, 166, 0.18); color: #14b8a6; }
+        .icon-pink { background: rgba(244, 63, 94, 0.18); color: #f43f5e; }
+        .icon-blue { background: rgba(59, 130, 246, 0.18); color: #3b82f6; }
+
+        .ft-metric-info {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .ft-m-title {
+          font-size: 0.62rem;
+          color: #94a3b8;
+          font-weight: 500;
+        }
+
+        .ft-m-val {
+          font-size: 0.88rem;
+          font-weight: 700;
+          color: #ffffff;
+          margin: 0.1rem 0;
+        }
+
+        .ft-m-trend {
+          font-size: 0.58rem;
+          font-weight: 600;
+        }
+        .trend-up { color: #10b981; }
+        .trend-down { color: #f43f5e; }
+
+        /* Charts Grid */
+        .ft-charts-grid {
+          display: grid;
+          grid-template-columns: 1.25fr 1fr;
+          gap: 0.6rem;
+        }
+
+        .ft-chart-card {
+          background: #1e293b;
+          border: 1px solid rgba(255,255,255,0.06);
+          border-radius: 10px;
+          padding: 0.65rem 0.75rem;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .ft-chart-head {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.4rem;
+        }
+
+        .ft-chart-title {
+          font-size: 0.68rem;
+          font-weight: 700;
+          color: #f8fafc;
+        }
+
+        .ft-legend-group {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          font-size: 0.58rem;
+          color: #94a3b8;
+        }
+
+        .leg-item {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+        }
+
+        .leg-dot {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+        }
+        .bg-blue { background: #3b82f6; }
+        .bg-pink { background: #ec4899; }
+
+        .ft-bar-chart-wrap {
+          position: relative;
+          width: 100%;
+          margin-top: 0.2rem;
+        }
+
+        .ft-tooltip-badge {
+          position: absolute;
+          top: -12px;
+          left: 48%;
+          transform: translateX(-50%);
+          background: #020617;
+          border: 1px solid rgba(255,255,255,0.15);
+          border-radius: 4px;
+          padding: 0.15rem 0.35rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+          z-index: 5;
+        }
+
+        .tt-val {
+          font-size: 0.58rem;
+          font-weight: 700;
+          color: #ffffff;
+        }
+
+        .tt-sub {
+          font-size: 0.48rem;
+          color: #94a3b8;
+        }
+
+        .ft-bar-svg {
+          width: 100%;
+          height: auto;
+        }
+
+        /* Donut Chart */
+        .ft-donut-body {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.5rem;
+          margin-top: 0.2rem;
+        }
+
+        .ft-donut-graphic {
+          position: relative;
+          width: 75px;
+          height: 75px;
+          flex-shrink: 0;
+        }
+
+        .ft-donut-svg {
+          width: 100%;
+          height: 100%;
+          transform: rotate(-90deg);
+        }
+
+        .donut-center-info {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .d-val {
+          font-size: 0.58rem;
+          font-weight: 700;
+          color: #ffffff;
+          line-height: 1;
+        }
+
+        .d-sub {
+          font-size: 0.45rem;
+          color: #94a3b8;
+          margin-top: 2px;
+        }
+
+        .ft-category-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.2rem;
+          flex: 1;
+        }
+
+        .ft-category-list li {
+          display: flex;
+          align-items: center;
+          font-size: 0.55rem;
+          color: #cbd5e1;
+        }
+
+        .c-dot {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          margin-right: 0.35rem;
+          flex-shrink: 0;
+        }
+
+        .c-name {
+          flex: 1;
+        }
+
+        .c-pct {
+          font-weight: 600;
+          color: #f8fafc;
+        }
+
+        /* Peach Sticky Note Styles */
+        .sticky-note-peach {
+          background: #fecdd3;
+          padding: 0.85rem;
+          box-shadow: 10px 20px 35px rgba(0,0,0,0.35);
+          transform: rotate(3deg);
+          border-radius: 4px;
+          z-index: 25;
+        }
+
+        .handwriting-peach {
+          font-family: var(--font-handwriting);
+          font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+          color: #881337;
+          margin: 0;
+          line-height: 1.25;
+          font-weight: 700;
+        }
+
+        .peach-arrow-wrap {
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 0.2rem;
+        }
+
+        /* Right block tag */
+        .right-block-tag {
+          position: absolute;
+          top: -10px;
+          right: -10px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 2px;
+          font-family: var(--font-mono);
+          font-size: clamp(0.65rem, 0.78vw, 0.78rem);
+          font-weight: 700;
+          color: rgba(255, 255, 255, 0.75);
+          letter-spacing: 0.18em;
+          z-index: 15;
+          text-align: right;
         }
 
         .hero-section {
@@ -601,41 +1292,27 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
 
           .hero-dashboard {
             width: 100%;
-            max-width: 480px;
+            max-width: 520px;
             transform:
               perspective(1000px)
-              rotateX(1deg)
-              rotateY(-4deg)
-              rotateZ(-2deg);
+              rotateX(3deg)
+              rotateY(5deg)
+              rotateZ(-2.5deg);
           }
 
-          .sticky-note-real {
-            position: absolute;
-            top: -30px;
-            left: -20px;
-            width: 155px;
-            background: #fef08a;
-            padding: 0.75rem;
-            box-shadow: 8px 16px 30px rgba(0,0,0,0.3);
-            transform: rotate(-4deg);
-            z-index: 25;
-          }
-
-          .floating-code-card {
+          .sticky-note-peach {
             position: absolute;
             bottom: -30px;
             right: -20px;
-            width: 185px;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(16px);
-            padding: 0.75rem 0.9rem;
-            border-radius: 12px;
-            box-shadow: -8px 16px 30px rgba(0,0,0,0.5);
+            width: 170px;
+            background: #fecdd3;
+            padding: 0.75rem;
+            box-shadow: 8px 16px 30px rgba(0,0,0,0.3);
             transform: rotate(2deg);
             z-index: 25;
           }
 
-          .right-handwritten-tag {
+          .right-block-tag {
             display: none;
           }
         }
@@ -699,10 +1376,10 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
             align-items: center;
           }
 
-          .sticky-note-real {
+          .sticky-note-peach {
             position: relative;
             bottom: auto;
-            left: auto;
+            right: auto;
             margin-top: 1.5rem;
             width: 100%;
             max-width: 320px;
@@ -710,18 +1387,7 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
           }
 
-          .floating-code-card {
-            position: relative;
-            bottom: auto;
-            right: auto;
-            margin-top: 1rem;
-            width: 100%;
-            max-width: 340px;
-            transform: none;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-          }
-
-          .right-handwritten-tag {
+          .right-block-tag {
             display: none;
           }
 
