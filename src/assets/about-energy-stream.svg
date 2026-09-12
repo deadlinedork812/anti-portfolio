@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1736 906" fill="none">
+  <defs>
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="wideGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <linearGradient id="energy" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#a78bfa"/>
+      <stop offset="0.48" stop-color="#e879f9"/>
+      <stop offset="0.78" stop-color="#fb7185"/>
+      <stop offset="1" stop-color="#fb923c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base alignment path: transparent by default; animate the dash layer. -->
+  <path id="energy-path"
+        d="M 1510 865
+           C 1475 820, 1390 785, 1320 745
+           C 1235 697, 1200 638, 1245 585
+           C 1295 526, 1380 500, 1370 446
+           C 1358 391, 1250 368, 1210 338
+           C 1170 308, 1195 275, 1245 249
+           C 1290 226, 1280 192, 1265 151
+           C 1252 117, 1260 84, 1270 50"
+        stroke="url(#energy)" stroke-width="3" stroke-linecap="round"
+        opacity="0.32"/>
+
+  <!-- Soft halo -->
+  <path id="energy-glow"
+        d="M 1510 865
+           C 1475 820, 1390 785, 1320 745
+           C 1235 697, 1200 638, 1245 585
+           C 1295 526, 1380 500, 1370 446
+           C 1358 391, 1250 368, 1210 338
+           C 1170 308, 1195 275, 1245 249
+           C 1290 226, 1280 192, 1265 151
+           C 1252 117, 1260 84, 1270 50"
+        stroke="url(#energy)" stroke-width="18" stroke-linecap="round"
+        opacity="0.14" filter="url(#wideGlow)"/>
+
+  <!-- Moving luminous segment -->
+  <path id="energy-flow"
+        d="M 1510 865
+           C 1475 820, 1390 785, 1320 745
+           C 1235 697, 1200 638, 1245 585
+           C 1295 526, 1380 500, 1370 446
+           C 1358 391, 1250 368, 1210 338
+           C 1170 308, 1195 275, 1245 249
+           C 1290 226, 1280 192, 1265 151
+           C 1252 117, 1260 84, 1270 50"
+        stroke="url(#energy)" stroke-width="7" stroke-linecap="round"
+        stroke-dasharray="20 980"
+        filter="url(#softGlow)">
+    <animate attributeName="stroke-dashoffset"
+             from="0" to="-1000" dur="8s" repeatCount="indefinite"/>
+  </path>
+</svg>

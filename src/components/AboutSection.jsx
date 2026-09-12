@@ -1,72 +1,75 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import aboutBgAvif from '../assets/about-background.avif';
+import aboutBgWebp from '../assets/about-background.webp';
+import aboutBgPng from '../assets/about-background.png';
 
-const nodes = [
+const conceptualNodes = [
   {
     id: 'curiosity',
     title: 'Curiosity',
     subtitle: 'A small question starts somewhere.',
-    color: '#a855f7',
-    glow: 'rgba(168, 85, 247, 0.85)',
-    x: 18,
-    y: 15,
-    labelPos: 'top-left'
+    color: '#a78bfa',
+    glow: 'rgba(167, 139, 250, 0.9)',
+    x: 87,
+    y: 86,
+    labelPos: 'left'
   },
   {
     id: 'context',
     title: 'Context',
     subtitle: 'Different angles. Deeper understanding.',
     color: '#c084fc',
-    glow: 'rgba(192, 132, 252, 0.85)',
+    glow: 'rgba(192, 132, 252, 0.9)',
+    x: 74,
+    y: 73,
+    labelPos: 'top-left'
+  },
+  {
+    id: 'connections',
+    title: 'Connections',
+    subtitle: 'Ideas, people, systems, patterns.',
+    color: '#e879f9',
+    glow: 'rgba(232, 121, 249, 0.9)',
     x: 82,
-    y: 15,
-    labelPos: 'top-right'
+    y: 49,
+    labelPos: 'right'
   },
   {
     id: 'real-problems',
     title: 'Real Problems',
     subtitle: 'Messy, ambiguous, human problems.',
     color: '#818cf8',
-    glow: 'rgba(129, 140, 248, 0.85)',
-    x: 8,
-    y: 48,
+    glow: 'rgba(129, 140, 248, 0.9)',
+    x: 65,
+    y: 37,
     labelPos: 'left'
-  },
-  {
-    id: 'connections',
-    title: 'Connections',
-    subtitle: 'Ideas, people, systems, patterns.',
-    color: '#ec4899',
-    glow: 'rgba(236, 72, 153, 0.85)',
-    x: 92,
-    y: 48,
-    labelPos: 'right'
   },
   {
     id: 'experiments',
     title: 'Experiments',
     subtitle: 'Build. Break. Learn. Iterate.',
-    color: '#a855f7',
-    glow: 'rgba(168, 85, 247, 0.85)',
-    x: 18,
-    y: 82,
-    labelPos: 'bottom-left'
+    color: '#fb7185',
+    glow: 'rgba(251, 113, 133, 0.9)',
+    x: 77,
+    y: 22,
+    labelPos: 'right'
   },
   {
     id: 'meaningful-impact',
     title: 'Meaningful Impact',
     subtitle: 'Better products. Happier users. A little progress forward.',
-    color: '#f97316',
-    glow: 'rgba(249, 115, 22, 0.95)',
-    x: 78,
-    y: 78,
-    labelPos: 'top-right'
+    color: '#fb923c',
+    glow: 'rgba(251, 146, 60, 0.95)',
+    x: 72,
+    y: 8,
+    labelPos: 'left'
   }
 ];
 
 export default function AboutSection() {
   const sectionRef = useRef(null);
-  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
+  const [parallaxOffset, setParallaxOffset] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     let animationFrameId;
@@ -81,9 +84,10 @@ export default function AboutSection() {
       const offsetY = (e.clientY - centerY) / (rect.height / 2);
 
       animationFrameId = requestAnimationFrame(() => {
-        setMouseOffset({
-          x: Math.max(-1, Math.min(1, offsetX)) * 10,
-          y: Math.max(-1, Math.min(1, offsetY)) * 10
+        // Restrained micro parallax (max 3px)
+        setParallaxOffset({
+          x: Math.max(-1, Math.min(1, offsetX)) * 3,
+          y: Math.max(-1, Math.min(1, offsetY)) * 3
         });
       });
     };
@@ -107,28 +111,30 @@ export default function AboutSection() {
       ref={sectionRef}
       className="portfolio-section section-dark about-canvas-container"
     >
-      {/* Dark Continuous Canvas Background Layers */}
-      <div className="about-bg-base" />
-      <div className="about-indigo-glow" />
-      <div className="about-violet-glow" />
-      <div className="about-grid-lines" />
-      <div className="about-stars-layer" />
+      {/* 1. Static Background Asset with AVIF -> WebP -> PNG Fallback */}
+      <picture className="about-bg-picture">
+        <source srcSet={aboutBgAvif} type="image/avif" />
+        <source srcSet={aboutBgWebp} type="image/webp" />
+        <img 
+          src={aboutBgPng} 
+          alt="Mysterious Conceptual Landscape Background" 
+          className="about-bg-img"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
 
-      {/* Crosshair Technical Construction Markers */}
-      <div className="tech-crosshair crosshair-tl">+</div>
-      <div className="tech-crosshair crosshair-tr">+</div>
-      <div className="tech-crosshair crosshair-bl">+</div>
-      <div className="tech-crosshair crosshair-br">+</div>
-      <div className="tech-axis-line vertical-axis" />
-      <div className="tech-axis-line horizontal-axis" />
+      {/* Ambient Gradient Overlays for Visual Contrast & Vignette */}
+      <div className="about-left-vignette" />
+      <div className="about-top-glow" />
 
-      {/* Main Continuous Canvas Content Wrapper */}
+      {/* Main Content Layout Container */}
       <div className="about-canvas-layout">
         
-        {/* Left Side — Editorial Typographic Manifesto (~50%) */}
+        {/* Left Column — Editorial Manifesto Typography */}
         <div className="about-manifesto-col">
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -149,66 +155,121 @@ export default function AboutSection() {
               I work at the intersection of quality, engineering, and product — bridging the gap between ideas and reliable, real-world software.
             </p>
           </motion.div>
+
+          {/* 12. Handwritten Callout & Arrow */}
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="handwritten-callout-block"
+          >
+            <span className="callout-script-line">Same person.</span>
+            <span className="callout-script-line">Different lens.</span>
+            <span className="callout-script-line">More connected solutions.</span>
+            
+            <svg className="callout-arrow-svg" width="75" height="42" viewBox="0 0 75 42" fill="none">
+              <path d="M 10 10 C 30 32, 55 35, 65 25" stroke="#e2e8f0" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="3 3" opacity="0.85" />
+              <path d="M 57 20 L 65 25 L 63 33" stroke="#e2e8f0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.85" />
+            </svg>
+          </motion.div>
         </div>
 
-        {/* Right Side — Conceptual Thinking System Visualization (~50%) */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.94 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="about-system-col"
-          style={{
-            transform: `translate3d(${mouseOffset.x}px, ${mouseOffset.y}px, 0)`
-          }}
-        >
-          <div className="thinking-system-stage">
+        {/* Right Column — Landscape Interactive Stage Overlay */}
+        <div className="about-landscape-stage-col">
+          <div 
+            className="about-interactive-stage"
+            style={{
+              transform: `translate3d(${parallaxOffset.x}px, ${parallaxOffset.y}px, 0)`
+            }}
+          >
+            {/* 4 & 5. SVG Energy Stream Overlay */}
+            <svg className="about-stream-svg-overlay" viewBox="0 0 1736 906" fill="none">
+              <defs>
+                <filter id="aboutSoftGlow" x="-100%" y="-100%" width="300%" height="300%">
+                  <feGaussianBlur stdDeviation="8" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+                <filter id="aboutWideGlow" x="-100%" y="-100%" width="300%" height="300%">
+                  <feGaussianBlur stdDeviation="24"/>
+                </filter>
+                <linearGradient id="aboutEnergyGrad" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#a78bfa"/>
+                  <stop offset="45%" stopColor="#e879f9"/>
+                  <stop offset="78%" stopColor="#fb7185"/>
+                  <stop offset="100%" stopColor="#fb923c"/>
+                </linearGradient>
+              </defs>
 
-            {/* Concentric Construction Rings */}
-            <svg className="system-bg-rings" viewBox="0 0 600 520" fill="none">
-              <circle cx="300" cy="260" r="220" stroke="rgba(129, 140, 248, 0.08)" strokeWidth="1" strokeDasharray="3 6" />
-              <circle cx="300" cy="260" r="160" stroke="rgba(192, 132, 252, 0.1)" strokeWidth="1" strokeDasharray="4 8" />
-              <ellipse cx="300" cy="260" rx="240" ry="170" stroke="rgba(236, 72, 153, 0.14)" strokeWidth="1" strokeDasharray="2 4" transform="rotate(-12 300 260)" className="rotating-orbit-1" />
-              <ellipse cx="300" cy="260" rx="210" ry="140" stroke="rgba(168, 85, 247, 0.16)" strokeWidth="1.2" strokeDasharray="4 6" transform="rotate(18 300 260)" className="rotating-orbit-2" />
+              {/* Layer 1: Subtle Base Path */}
+              <path 
+                className="stream-base-path"
+                d="M 1510 865 C 1475 820, 1390 785, 1320 745 C 1235 697, 1200 638, 1245 585 C 1295 526, 1380 500, 1370 446 C 1358 391, 1250 368, 1210 338 C 1170 308, 1195 275, 1245 249 C 1290 226, 1280 192, 1265 151 C 1252 117, 1260 84, 1270 50"
+                stroke="url(#aboutEnergyGrad)" 
+                strokeWidth="2.5" 
+                strokeLinecap="round"
+                opacity="0.25"
+              />
+
+              {/* Layer 2: Soft Atmosphere Glow */}
+              <path 
+                className="stream-glow-path"
+                d="M 1510 865 C 1475 820, 1390 785, 1320 745 C 1235 697, 1200 638, 1245 585 C 1295 526, 1380 500, 1370 446 C 1358 391, 1250 368, 1210 338 C 1170 308, 1195 275, 1245 249 C 1290 226, 1280 192, 1265 151 C 1252 117, 1260 84, 1270 50"
+                stroke="url(#aboutEnergyGrad)" 
+                strokeWidth="20" 
+                strokeLinecap="round"
+                opacity="0.16" 
+                filter="url(#aboutWideGlow)"
+              />
+
+              {/* Layer 3: Upward Moving Luminous Segment (Foreground to Monolith) */}
+              <path 
+                className="stream-moving-energy"
+                d="M 1510 865 C 1475 820, 1390 785, 1320 745 C 1235 697, 1200 638, 1245 585 C 1295 526, 1380 500, 1370 446 C 1358 391, 1250 368, 1210 338 C 1170 308, 1195 275, 1245 249 C 1290 226, 1280 192, 1265 151 C 1252 117, 1260 84, 1270 50"
+                stroke="url(#aboutEnergyGrad)" 
+                strokeWidth="6" 
+                strokeLinecap="round"
+                filter="url(#aboutSoftGlow)"
+              />
             </svg>
 
-            {/* Central Glowing Conceptual Orb */}
-            <div className="conceptual-orb-container">
-              <div className="orb-ambient-halo" />
-              <div className="orb-core">
-                <div className="orb-radial-texture" />
-                <div className="orb-inner-glow" />
-                
-                {/* Center Handwritten Text */}
-                <div className="orb-center-script">
-                  <span className="script-line-1">From curiosity</span>
-                  <span className="script-line-2">to impact.</span>
-                  <svg className="script-connector-svg" width="130" height="14" viewBox="0 0 130 14" fill="none">
-                    <path d="M 5 8 Q 65 13 125 4" stroke="#ec4899" strokeWidth="1.8" strokeLinecap="round" opacity="0.8" />
-                  </svg>
-                </div>
-              </div>
+            {/* 13. Monolith Breathing Light Overlay */}
+            <div className="monolith-glow-aura" />
+
+            {/* 10. Central Message: "See the system. Shape the outcome." */}
+            <div className="central-message-overlay">
+              <span className="central-msg-line1">See the system.</span>
+              <span className="central-msg-line2">Shape the outcome.</span>
+              <svg className="central-msg-underline" width="160" height="12" viewBox="0 0 160 12" fill="none">
+                <path d="M 6 6 Q 80 11 154 4" stroke="url(#aboutEnergyGrad)" strokeWidth="2" strokeLinecap="round" opacity="0.85" />
+              </svg>
             </div>
 
-            {/* 6 Surrounding Floating Nodes / Annotations */}
-            <div className="system-nodes-overlay">
-              {nodes.map((node) => (
+            {/* 8 & 9. Conceptual Nodes Overlay */}
+            <div className="conceptual-nodes-overlay">
+              {conceptualNodes.map((node) => (
                 <div
                   key={node.id}
-                  className={`about-system-node node-${node.id}`}
+                  className={`about-concept-node node-${node.id}`}
                   style={{ left: `${node.x}%`, top: `${node.y}%` }}
                 >
-                  {/* Glowing Core Dot */}
+                  {/* Small Glowing Core Dot */}
                   <div 
                     className="about-node-dot"
                     style={{ 
                       backgroundColor: node.color,
-                      boxShadow: `0 0 14px ${node.glow}, 0 0 28px ${node.glow}`
+                      boxShadow: `0 0 12px ${node.glow}, 0 0 24px ${node.glow}`
                     }}
                   />
 
-                  {/* Floating Annotation Text */}
-                  <div className={`about-node-annotation about-label-${node.labelPos}`}>
+                  {/* Thin Connecting Line */}
+                  <div className={`about-node-connector conn-${node.labelPos}`} />
+
+                  {/* Editorial Text Annotation */}
+                  <div className={`about-node-label about-label-${node.labelPos}`}>
                     <span className="about-node-title">{node.title}</span>
                     <span className="about-node-subtitle">{node.subtitle}</span>
                   </div>
@@ -216,156 +277,95 @@ export default function AboutSection() {
               ))}
             </div>
 
-            {/* Handwritten System Callout & Arrow (Lower Right) */}
-            <div className="handwritten-callout-block">
-              <span className="callout-script-line">Same person.</span>
-              <span className="callout-script-line">Different lens.</span>
-              <span className="callout-script-line">More connected solutions.</span>
-              
-              {/* Subtle Hand-Drawn SVG Arrow Pointing Back to System Orb */}
-              <svg className="callout-arrow-svg" width="65" height="45" viewBox="0 0 65 45" fill="none">
-                <path d="M 12 8 Q 36 34 46 34" stroke="#cbd5e1" strokeWidth="1.3" strokeLinecap="round" />
-                <path d="M 40 28 L 46 34 L 50 28" stroke="#cbd5e1" strokeWidth="1.3" strokeLinecap="round" />
-              </svg>
-            </div>
-
           </div>
-        </motion.div>
+        </div>
 
       </div>
 
       <style>{`
-        /* Full Screen Dark Continuous Canvas */
+        /* 1. Canvas Container & Environment */
         .about-canvas-container {
-          background-color: #06070d;
           position: relative;
           min-height: 100vh;
           width: 100%;
           overflow: hidden;
-          padding: 4rem 4rem;
+          background-color: #05060b;
           color: #f8fafc;
           display: flex;
           align-items: center;
-          justify-content: center;
+          padding: 4rem 3rem 4rem 4rem;
         }
 
-        .about-bg-base {
+        .about-bg-picture {
           position: absolute;
           inset: 0;
-          background: radial-gradient(circle at 50% 50%, #090b16 0%, #06070d 100%);
+          width: 100%;
+          height: 100%;
           z-index: 1;
-        }
-
-        .about-indigo-glow {
-          position: absolute;
-          top: 15%;
-          right: 20%;
-          width: 550px;
-          height: 550px;
-          background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 75%);
-          filter: blur(100px);
           pointer-events: none;
-          z-index: 2;
         }
 
-        .about-violet-glow {
+        .about-bg-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center right;
+          display: block;
+        }
+
+        /* Left Side Darkness Vignette for High Typography Contrast */
+        .about-left-vignette {
           position: absolute;
-          bottom: 10%;
-          left: 30%;
-          width: 450px;
-          height: 450px;
-          background: radial-gradient(circle, rgba(236, 72, 153, 0.07) 0%, rgba(249, 115, 22, 0.04) 60%, transparent 75%);
+          inset: 0;
+          background: linear-gradient(90deg, #05060b 0%, rgba(5, 6, 11, 0.95) 30%, rgba(5, 6, 11, 0.6) 55%, transparent 100%);
+          z-index: 2;
+          pointer-events: none;
+        }
+
+        .about-top-glow {
+          position: absolute;
+          top: 0;
+          right: 15%;
+          width: 600px;
+          height: 350px;
+          background: radial-gradient(circle, rgba(167, 139, 250, 0.08) 0%, rgba(232, 121, 249, 0.03) 60%, transparent 80%);
           filter: blur(90px);
-          pointer-events: none;
           z-index: 2;
-        }
-
-        /* Technical Grid & Linework */
-        .about-grid-lines {
-          position: absolute;
-          inset: 0;
-          background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-          background-size: 32px 32px;
           pointer-events: none;
-          z-index: 3;
         }
 
-        /* Subtle Star Particles */
-        .about-stars-layer {
-          position: absolute;
-          inset: 0;
-          background-image: 
-            radial-gradient(1.5px 1.5px at 10% 20%, rgba(255, 255, 255, 0.3), transparent),
-            radial-gradient(1px 1px at 30% 65%, rgba(255, 255, 255, 0.25), transparent),
-            radial-gradient(1.5px 1.5px at 60% 15%, rgba(255, 255, 255, 0.35), transparent),
-            radial-gradient(1px 1px at 85% 45%, rgba(255, 255, 255, 0.25), transparent),
-            radial-gradient(1.2px 1.2px at 75% 85%, rgba(255, 255, 255, 0.3), transparent),
-            radial-gradient(1px 1px at 45% 90%, rgba(255, 255, 255, 0.2), transparent);
-          background-size: 100% 100%;
-          pointer-events: none;
-          z-index: 3;
-          animation: starDrift 30s linear infinite alternate;
-        }
-
-        @keyframes starDrift {
-          from { transform: translateY(0); }
-          to { transform: translateY(-10px); }
-        }
-
-        /* Technical Crosshairs & Axes */
-        .tech-crosshair {
-          position: absolute;
-          font-family: var(--font-mono);
-          font-size: 0.8rem;
-          color: rgba(255, 255, 255, 0.15);
-          pointer-events: none;
-          z-index: 4;
-          user-select: none;
-        }
-        .crosshair-tl { top: 2.5rem; left: 3rem; }
-        .crosshair-tr { top: 2.5rem; right: 3rem; }
-        .crosshair-bl { bottom: 2.5rem; left: 3rem; }
-        .crosshair-br { bottom: 2.5rem; right: 3rem; }
-
-        .tech-axis-line {
-          position: absolute;
-          background: rgba(255, 255, 255, 0.04);
-          pointer-events: none;
-          z-index: 4;
-        }
-        .vertical-axis { top: 0; bottom: 0; left: 50%; width: 1px; }
-        .horizontal-axis { left: 0; right: 0; top: 50%; height: 1px; }
-
-        /* Main Canvas Layout Grid (~50% / ~50%) */
+        /* Main Canvas Layout Grid */
         .about-canvas-layout {
           position: relative;
           z-index: 10;
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: minmax(380px, 45%) 1fr;
           gap: 3rem;
           align-items: center;
           width: 100%;
-          max-width: 1380px;
+          max-width: 1540px;
           margin: 0 auto;
         }
 
-        /* Left Manifesto Column */
+        /* Left Column — Manifesto */
         .about-manifesto-col {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          z-index: 12;
         }
 
         .manifesto-headline {
           font-family: var(--font-display);
-          font-size: clamp(3.4rem, 4.8vw, 5.8rem);
+          font-size: clamp(3.2rem, 4.6vw, 5.6rem);
           font-weight: 900;
           line-height: 0.98;
           letter-spacing: -0.04em;
           color: #ffffff;
           display: flex;
           flex-direction: column;
-          margin-bottom: 2.2rem;
+          margin-bottom: 2rem;
+          text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
         }
 
         .manifesto-line {
@@ -373,11 +373,12 @@ export default function AboutSection() {
         }
 
         .manifesto-line.gap-top {
-          margin-top: 0.45rem;
+          margin-top: 0.4rem;
         }
 
+        /* 11. Builder Signature Gradient */
         .builder-highlight {
-          background: linear-gradient(90deg, #818cf8 0%, #c084fc 35%, #f472b6 70%, #fb923c 100%);
+          background: linear-gradient(90deg, #a78bfa 0%, #c084fc 35%, #f472b6 70%, #fb923c 100%);
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -386,168 +387,145 @@ export default function AboutSection() {
         .manifesto-subcopy {
           font-family: var(--font-sans);
           font-size: clamp(0.95rem, 1.1vw, 1.12rem);
-          color: #94a3b8;
+          color: #cbd5e1;
           line-height: 1.65;
           max-width: 440px;
           font-weight: 400;
           letter-spacing: -0.01em;
+          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
         }
 
-        /* Right System Column */
-        .about-system-col {
+        /* 12. Handwritten Callout */
+        .handwritten-callout-block {
+          margin-top: 3rem;
           display: flex;
-          justify-content: center;
-          align-items: center;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .callout-script-line {
+          font-family: var(--font-handwriting);
+          font-size: 1.15rem;
+          color: #e2e8f0;
+          margin: 0;
+          line-height: 1.25;
+          text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95);
+        }
+
+        .callout-arrow-svg {
+          margin-top: 0.4rem;
+          margin-left: 1.5rem;
+        }
+
+        /* Right Column — Landscape Interactive Stage */
+        .about-landscape-stage-col {
           position: relative;
-          transition: transform 0.2s ease-out;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .about-interactive-stage {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 1736 / 906;
+          max-height: 820px;
+          transition: transform 0.25s ease-out;
           will-change: transform;
         }
 
-        .thinking-system-stage {
-          position: relative;
-          width: 100%;
-          max-width: 620px;
-          height: 520px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .system-bg-rings {
+        /* 4 & 5. SVG Energy Stream Overlay */
+        .about-stream-svg-overlay {
           position: absolute;
           inset: 0;
           width: 100%;
           height: 100%;
           pointer-events: none;
-          z-index: 5;
+          z-index: 15;
         }
 
-        .rotating-orbit-1 {
-          transform-origin: 300px 260px;
-          animation: orbitRotate1 90s linear infinite;
+        /* 5 & 6. Moving Luminous Energy Path Animation */
+        .stream-moving-energy {
+          stroke-dasharray: 40 1060;
+          stroke-dashoffset: 0;
+          animation: energyFlowUpward 9s linear infinite;
         }
 
-        .rotating-orbit-2 {
-          transform-origin: 300px 260px;
-          animation: orbitRotate2 70s linear infinite reverse;
+        @keyframes energyFlowUpward {
+          0% {
+            stroke-dashoffset: 0;
+          }
+          100% {
+            stroke-dashoffset: -1100;
+          }
         }
 
-        @keyframes orbitRotate1 {
-          from { transform: rotate(-12deg); }
-          to { transform: rotate(348deg); }
-        }
-
-        @keyframes orbitRotate2 {
-          from { transform: rotate(18deg); }
-          to { transform: rotate(-342deg); }
-        }
-
-        /* Central Conceptual Orb (NOT a planet) */
-        .conceptual-orb-container {
-          position: relative;
-          width: 220px;
-          height: 220px;
-          z-index: 10;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .orb-ambient-halo {
+        /* 13. Monolith Light Breathing Glow */
+        .monolith-glow-aura {
           position: absolute;
-          inset: -20px;
+          top: 3.5%;
+          left: 71.5%;
+          width: 90px;
+          height: 110px;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, rgba(129, 140, 248, 0.08) 50%, transparent 75%);
-          filter: blur(22px);
-          animation: orbHaloBreathe 6s ease-in-out infinite alternate;
-        }
-
-        @keyframes orbHaloBreathe {
-          0% { transform: scale(0.96); opacity: 0.7; }
-          100% { transform: scale(1.06); opacity: 1; }
-        }
-
-        .orb-core {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          background: radial-gradient(circle at 35% 35%, #1e1b4b 0%, #0d1127 55%, #04060e 100%);
-          box-shadow: 
-            0 0 45px rgba(129, 140, 248, 0.22),
-            inset 0 0 30px rgba(192, 132, 252, 0.25),
-            inset -10px -10px 25px rgba(0, 0, 0, 0.8);
-          border: 1.5px solid rgba(192, 132, 252, 0.35);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          animation: orbBreath 8s ease-in-out infinite alternate;
-        }
-
-        @keyframes orbBreath {
-          0% { transform: scale(0.98); }
-          100% { transform: scale(1.02); }
-        }
-
-        .orb-radial-texture {
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-          background-size: 14px 14px;
-          opacity: 0.4;
+          background: radial-gradient(circle, rgba(251, 146, 60, 0.4) 0%, rgba(244, 114, 182, 0.2) 45%, transparent 75%);
+          filter: blur(18px);
           pointer-events: none;
-        }
-
-        .orb-inner-glow {
-          position: absolute;
-          inset: 0;
-          border-radius: 50%;
-          background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
-          pointer-events: none;
-        }
-
-        .orb-center-script {
-          position: relative;
           z-index: 12;
+          animation: monolithLightBreathe 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes monolithLightBreathe {
+          0% { opacity: 0.35; transform: scale(0.92); }
+          100% { opacity: 0.85; transform: scale(1.12); }
+        }
+
+        /* 10. Central Message: "See the system. Shape the outcome." */
+        .central-message-overlay {
+          position: absolute;
+          top: 17.5%;
+          left: 60.5%;
+          transform: rotate(-3deg);
           display: flex;
           flex-direction: column;
           align-items: center;
-          transform: rotate(-5deg);
-          text-align: center;
+          z-index: 22;
+          pointer-events: none;
           user-select: none;
         }
 
-        .script-line-1 {
+        .central-msg-line1 {
           font-family: var(--font-handwriting);
-          font-size: clamp(1.8rem, 2.4vw, 2.6rem);
+          font-size: clamp(1.5rem, 2vw, 2.2rem);
           color: #e9d5ff;
-          line-height: 0.95;
-          text-shadow: 0 4px 14px rgba(192, 132, 252, 0.6);
+          line-height: 1.0;
+          text-shadow: 0 0 16px rgba(167, 139, 250, 0.75), 0 2px 10px rgba(0, 0, 0, 0.95);
         }
 
-        .script-line-2 {
+        .central-msg-line2 {
           font-family: var(--font-handwriting);
-          font-size: clamp(2.1rem, 2.8vw, 3rem);
+          font-size: clamp(1.7rem, 2.3vw, 2.5rem);
           color: #f472b6;
           line-height: 1.05;
-          text-shadow: 0 4px 18px rgba(244, 114, 182, 0.6);
-          margin-top: 0.15rem;
+          margin-top: 0.1rem;
+          text-shadow: 0 0 20px rgba(244, 114, 182, 0.8), 0 2px 10px rgba(0, 0, 0, 0.95);
         }
 
-        .script-connector-svg {
+        .central-msg-underline {
           margin-top: -2px;
         }
 
-        /* Surrounding Floating Nodes Overlay */
-        .system-nodes-overlay {
+        /* 8 & 9. Conceptual Nodes System Overlay */
+        .conceptual-nodes-overlay {
           position: absolute;
           inset: 0;
           pointer-events: none;
-          z-index: 20;
+          z-index: 25;
         }
 
-        .about-system-node {
+        .about-concept-node {
           position: absolute;
           transform: translate(-50%, -50%);
           display: flex;
@@ -557,42 +535,49 @@ export default function AboutSection() {
         }
 
         .about-node-dot {
-          width: 11px;
-          height: 11px;
+          width: 10px;
+          height: 10px;
           border-radius: 50%;
           flex-shrink: 0;
           transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-          animation: dotPulse 3s ease-in-out infinite alternate;
+          animation: nodePulseGlow 3.5s ease-in-out infinite alternate;
         }
 
-        @keyframes dotPulse {
-          0% { transform: scale(0.9); }
-          100% { transform: scale(1.3); }
+        @keyframes nodePulseGlow {
+          0% { transform: scale(0.9); opacity: 0.85; }
+          100% { transform: scale(1.35); opacity: 1; }
         }
 
-        .about-system-node:hover .about-node-dot {
-          transform: scale(1.6);
+        .about-concept-node:hover .about-node-dot {
+          transform: scale(1.7);
         }
 
-        .about-node-annotation {
+        /* Thin Connector Lines */
+        .about-node-connector {
+          position: absolute;
+          background: rgba(255, 255, 255, 0.25);
+          pointer-events: none;
+        }
+        .conn-left { right: 10px; top: 50%; width: 18px; height: 1px; }
+        .conn-right { left: 10px; top: 50%; width: 18px; height: 1px; }
+        .conn-top-left { right: 10px; bottom: 10px; width: 16px; height: 1px; transform: rotate(-25deg); transform-origin: right center; }
+
+        /* Node Text Labels */
+        .about-node-label {
           position: absolute;
           display: flex;
           flex-direction: column;
           width: max-content;
-          max-width: 175px;
+          max-width: 185px;
         }
 
-        /* Directional Label Layouts Extending Outwards */
-        .about-label-top-left { bottom: 12px; right: 12px; align-items: flex-end; text-align: right; }
-        .about-label-top-right { bottom: 12px; left: 12px; align-items: flex-start; text-align: left; }
-        .about-label-left { right: 14px; top: -12px; align-items: flex-end; text-align: right; }
-        .about-label-right { left: 14px; top: -12px; align-items: flex-start; text-align: left; }
-        .about-label-bottom-left { top: 12px; right: 12px; align-items: flex-end; text-align: right; }
-        .about-label-bottom-right { top: 12px; left: 12px; align-items: flex-start; text-align: left; }
+        .about-label-left { right: 32px; top: -14px; align-items: flex-end; text-align: right; }
+        .about-label-right { left: 32px; top: -14px; align-items: flex-start; text-align: left; }
+        .about-label-top-left { right: 28px; bottom: 14px; align-items: flex-end; text-align: right; }
 
         .about-node-title {
           font-family: var(--font-handwriting) !important;
-          font-size: 1.4rem !important;
+          font-size: 1.35rem !important;
           color: #ffffff !important;
           line-height: 1.1 !important;
           font-weight: 700 !important;
@@ -602,104 +587,56 @@ export default function AboutSection() {
 
         .about-node-subtitle {
           font-family: var(--font-sans) !important;
-          font-size: 0.73rem !important;
-          color: #e2e8f0 !important;
+          font-size: 0.72rem !important;
+          color: #cbd5e1 !important;
           line-height: 1.3 !important;
           margin-top: 2px !important;
           font-weight: 400 !important;
           text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95) !important;
         }
 
-        /* Handwritten Callout Block (Lower Right) */
-        .handwritten-callout-block {
-          position: absolute;
-          right: -2%;
-          bottom: -8%;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          transform: rotate(3deg);
-          pointer-events: none;
-          z-index: 25;
-        }
-
-        .callout-script-line {
-          font-family: var(--font-handwriting);
-          font-size: 1rem;
-          color: #f1f5f9;
-          margin: 0;
-          line-height: 1.25;
-          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
-        }
-
-        .callout-arrow-svg {
-          margin-top: 0.25rem;
-          margin-right: 2.2rem;
-        }
-
-        /* Responsive Layout Behavior */
+        /* 17. Responsive Behavior */
         @media (max-width: 1200px) {
           .about-canvas-layout {
             grid-template-columns: 1fr;
-            gap: 4rem;
+            gap: 3.5rem;
           }
           .about-canvas-container {
             padding: 4rem 2rem;
           }
-          .thinking-system-stage {
-            max-width: 520px;
-            height: 460px;
+          .about-landscape-stage-col {
+            max-width: 800px;
+            margin: 0 auto;
           }
-          .conceptual-orb-container {
-            width: 200px;
-            height: 200px;
+          .manifesto-subcopy {
+            max-width: 100%;
           }
         }
 
         @media (max-width: 768px) {
           .about-canvas-container {
-            padding: 3rem 1.5rem;
+            padding: 3rem 1.25rem;
           }
           .manifesto-headline {
-            font-size: clamp(2.6rem, 8vw, 3.8rem);
+            font-size: clamp(2.5rem, 8vw, 3.8rem);
           }
           .manifesto-subcopy {
             font-size: 0.95rem;
           }
-          .thinking-system-stage {
-            max-width: 100%;
-            height: 440px;
-          }
-          .conceptual-orb-container {
-            width: 160px;
-            height: 160px;
-          }
-          .about-node-title {
-            font-size: 1.15rem !important;
-          }
-          .about-node-subtitle {
-            font-size: 0.68rem !important;
-          }
-          .handwritten-callout-block {
-            right: 0;
-            bottom: -6%;
-          }
-          .tech-crosshair, .tech-axis-line {
-            display: none;
-          }
+          .central-msg-line1 { font-size: 1.3rem; }
+          .central-msg-line2 { font-size: 1.5rem; }
+          .about-node-title { font-size: 1.1rem !important; }
+          .about-node-subtitle { font-size: 0.65rem !important; }
         }
 
-        /* Prefers Reduced Motion Compliance */
+        /* 15. Prefers Reduced Motion Compliance */
         @media (prefers-reduced-motion: reduce) {
-          .about-stars-layer,
-          .rotating-orbit-1,
-          .rotating-orbit-2,
-          .orb-ambient-halo,
-          .orb-core,
+          .stream-moving-energy,
+          .monolith-glow-aura,
           .about-node-dot {
             animation: none !important;
           }
-          .about-system-col {
+          .about-interactive-stage {
             transition: none !important;
             transform: none !important;
           }
