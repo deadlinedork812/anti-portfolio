@@ -28,7 +28,7 @@ export default function Sidebar({ activeSection, setActiveSection }) {
   return (
     <>
       {/* Mobile Menu Button */}
-      <button 
+      <button
         className="mobile-toggle-btn"
         onClick={() => setMobileOpen(!mobileOpen)}
         aria-label="Toggle menu"
