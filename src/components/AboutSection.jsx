@@ -4,7 +4,7 @@ import aboutBgAvif from '../assets/about-background.avif';
 import aboutBgWebp from '../assets/about-background.webp';
 import aboutBgPng from '../assets/about-background.png';
 
-// Spatial distribution mapped to proportional 1736 x 906 artwork viewBox coordinates
+// 6 Glass-Panel Conceptual Nodes mapped to proportional 1736 x 906 SVG ViewBox coordinates
 const conceptualNodes = [
   {
     id: 'context',
@@ -12,12 +12,14 @@ const conceptualNodes = [
     subtitle: 'Different angles. Deeper understanding.',
     color: '#c084fc',
     glow: 'rgba(192, 132, 252, 0.85)',
-    dotX: 72.5,   // ~1258px
-    dotY: 18.7,   // ~170px
-    labelX: 72.5, // ~1258px
-    labelY: 6.5,  // ~58px
+    dotX: 1260,
+    dotY: 175,
+    foX: 1140,
+    foY: 45,
+    foWidth: 240,
+    foHeight: 80,
     align: 'center',
-    leaderSvg: 'M 1258 100 L 1258 162'
+    leaderD: 'M 1260 115 L 1260 170'
   },
   {
     id: 'meaningful-impact',
@@ -25,12 +27,14 @@ const conceptualNodes = [
     subtitle: 'Better products. Happier users. A little progress forward.',
     color: '#fb923c',
     glow: 'rgba(251, 146, 60, 0.95)',
-    dotX: 73.7,   // ~1280px
-    dotY: 8.2,    // ~75px
-    labelX: 86.5, // ~1500px
-    labelY: 10.5, // ~95px
+    dotX: 1275,
+    dotY: 70,
+    foX: 1410,
+    foY: 45,
+    foWidth: 250,
+    foHeight: 85,
     align: 'left',
-    leaderSvg: 'M 1495 95 L 1290 75'
+    leaderD: 'M 1410 75 L 1285 70'
   },
   {
     id: 'real-problems',
@@ -38,12 +42,14 @@ const conceptualNodes = [
     subtitle: 'Messy, ambiguous, human problems.',
     color: '#818cf8',
     glow: 'rgba(129, 140, 248, 0.85)',
-    dotX: 69.7,   // ~1210px
-    dotY: 37.3,   // ~338px
-    labelX: 52.5, // ~910px
-    labelY: 30.5, // ~276px
+    dotX: 1205,
+    dotY: 338,
+    foX: 760,
+    foY: 260,
+    foWidth: 240,
+    foHeight: 85,
     align: 'right',
-    leaderSvg: 'M 930 295 L 1200 335'
+    leaderD: 'M 1000 295 L 1195 335'
   },
   {
     id: 'connections',
@@ -51,12 +57,14 @@ const conceptualNodes = [
     subtitle: 'Ideas, people, systems, patterns.',
     color: '#e879f9',
     glow: 'rgba(232, 121, 249, 0.85)',
-    dotX: 78.9,   // ~1370px
-    dotY: 49.2,   // ~446px
-    labelX: 87.5, // ~1520px
-    labelY: 48.0, // ~435px
+    dotX: 1370,
+    dotY: 446,
+    foX: 1470,
+    foY: 415,
+    foWidth: 240,
+    foHeight: 85,
     align: 'left',
-    leaderSvg: 'M 1515 440 L 1380 446'
+    leaderD: 'M 1470 445 L 1380 446'
   },
   {
     id: 'experiments',
@@ -64,12 +72,14 @@ const conceptualNodes = [
     subtitle: 'Build. Break. Learn. Iterate.',
     color: '#fb7185',
     glow: 'rgba(251, 113, 133, 0.85)',
-    dotX: 71.7,   // ~1245px
-    dotY: 64.6,   // ~585px
-    labelX: 53.0, // ~920px
-    labelY: 76.0, // ~688px
+    dotX: 1245,
+    dotY: 585,
+    foX: 780,
+    foY: 650,
+    foWidth: 240,
+    foHeight: 85,
     align: 'right',
-    leaderSvg: 'M 935 675 L 1235 590'
+    leaderD: 'M 1020 675 L 1235 590'
   },
   {
     id: 'curiosity',
@@ -77,12 +87,14 @@ const conceptualNodes = [
     subtitle: 'A small question starts somewhere.',
     color: '#a78bfa',
     glow: 'rgba(167, 139, 250, 0.85)',
-    dotX: 87.0,   // ~1510px
-    dotY: 93.2,   // ~845px
-    labelX: 86.5, // ~1500px
-    labelY: 81.0, // ~733px
+    dotX: 1510,
+    dotY: 840,
+    foX: 1460,
+    foY: 720,
+    foWidth: 240,
+    foHeight: 85,
     align: 'left',
-    leaderSvg: 'M 1500 770 L 1510 835'
+    leaderD: 'M 1510 775 L 1510 830'
   }
 ];
 
@@ -103,10 +115,10 @@ export default function AboutSection() {
       const offsetY = (e.clientY - centerY) / (rect.height / 2);
 
       animationFrameId = requestAnimationFrame(() => {
-        // Subtle micro parallax (max 3px)
+        // Restrained 2px parallax for foreground annotations layer
         setParallaxOffset({
-          x: Math.max(-1, Math.min(1, offsetX)) * 3,
-          y: Math.max(-1, Math.min(1, offsetY)) * 3
+          x: Math.max(-1, Math.min(1, offsetX)) * 2,
+          y: Math.max(-1, Math.min(1, offsetY)) * 2
         });
       });
     };
@@ -143,7 +155,7 @@ export default function AboutSection() {
         />
       </picture>
 
-      {/* Vignette Overlay for High Manifesto Readability */}
+      {/* Dark Vignette Overlay for High Manifesto Contrast */}
       <div className="about-left-vignette" />
 
       {/* Main Layout Grid */}
@@ -193,7 +205,7 @@ export default function AboutSection() {
           </motion.div>
         </div>
 
-        {/* Right Column — Landscape Stage & Annotations */}
+        {/* Right Column — Landscape Stage Overlay System */}
         <div className="about-landscape-stage-col">
           <div 
             className="about-interactive-stage"
@@ -201,112 +213,178 @@ export default function AboutSection() {
               transform: `translate3d(${parallaxOffset.x}px, ${parallaxOffset.y}px, 0)`
             }}
           >
-            {/* SVG Overlay: Energy Stream + Leader Lines */}
-            <svg className="about-stream-svg-overlay" viewBox="0 0 1736 906" fill="none">
+            {/* SVG Master ViewBox (1736 x 906) — Responsive Coordinate System */}
+            <svg 
+              className="about-master-svg-stage" 
+              viewBox="0 0 1736 906" 
+              fill="none"
+              preserveAspectRatio="xMidYMid meet"
+            >
               <defs>
-                <filter id="aboutSoftGlow" x="-100%" y="-100%" width="300%" height="300%">
-                  <feGaussianBlur stdDeviation="8" result="blur"/>
+                <filter id="riverAtmosphere" x="-100%" y="-100%" width="300%" height="300%">
+                  <feGaussianBlur stdDeviation="22"/>
+                </filter>
+                <filter id="riverGlow" x="-100%" y="-100%" width="300%" height="300%">
+                  <feGaussianBlur stdDeviation="7" result="blur"/>
                   <feMerge>
                     <feMergeNode in="blur"/>
                     <feMergeNode in="SourceGraphic"/>
                   </feMerge>
                 </filter>
-                <filter id="aboutWideGlow" x="-100%" y="-100%" width="300%" height="300%">
-                  <feGaussianBlur stdDeviation="24"/>
+                <filter id="particleGlow" x="-100%" y="-100%" width="300%" height="300%">
+                  <feGaussianBlur stdDeviation="3"/>
                 </filter>
-                <linearGradient id="aboutEnergyGrad" x1="0" y1="1" x2="1" y2="0">
+
+                <linearGradient id="riverGrad" x1="0" y1="1" x2="1" y2="0">
                   <stop offset="0%" stopColor="#a78bfa"/>
-                  <stop offset="45%" stopColor="#e879f9"/>
-                  <stop offset="78%" stopColor="#fb7185"/>
+                  <stop offset="30%" stopColor="#c084fc"/>
+                  <stop offset="60%" stopColor="#e879f9"/>
+                  <stop offset="85%" stopColor="#fb7185"/>
+                  <stop offset="100%" stopColor="#fb923c"/>
+                </linearGradient>
+
+                <linearGradient id="riverHighlightGrad" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#ffffff"/>
+                  <stop offset="50%" stopColor="#e879f9"/>
                   <stop offset="100%" stopColor="#fb923c"/>
                 </linearGradient>
               </defs>
 
-              {/* Layer 1: Base Path */}
+              {/* ============================================================ */}
+              {/* LIVING RIVER OF LIGHT — MULTI-LAYER UPWARD LIQUID FLOW      */}
+              {/* ============================================================ */}
+
+              {/* River Layer 1: Base Translucent Bed (Entire river length visible) */}
               <path 
-                className="stream-base-path"
                 d="M 1510 865 C 1475 820, 1390 785, 1320 745 C 1235 697, 1200 638, 1245 585 C 1295 526, 1380 500, 1370 446 C 1358 391, 1250 368, 1210 338 C 1170 308, 1195 275, 1245 249 C 1290 226, 1280 192, 1265 151 C 1252 117, 1260 84, 1270 50"
-                stroke="url(#aboutEnergyGrad)" 
-                strokeWidth="2.5" 
+                stroke="url(#riverGrad)" 
+                strokeWidth="12" 
                 strokeLinecap="round"
-                opacity="0.22"
+                opacity="0.32"
               />
 
-              {/* Layer 2: Soft Atmosphere Glow */}
+              {/* River Layer 2: Atmospheric Soft Bloom */}
               <path 
-                className="stream-glow-path"
                 d="M 1510 865 C 1475 820, 1390 785, 1320 745 C 1235 697, 1200 638, 1245 585 C 1295 526, 1380 500, 1370 446 C 1358 391, 1250 368, 1210 338 C 1170 308, 1195 275, 1245 249 C 1290 226, 1280 192, 1265 151 C 1252 117, 1260 84, 1270 50"
-                stroke="url(#aboutEnergyGrad)" 
-                strokeWidth="18" 
+                stroke="url(#riverGrad)" 
+                strokeWidth="36" 
                 strokeLinecap="round"
-                opacity="0.14" 
-                filter="url(#aboutWideGlow)"
+                opacity="0.18" 
+                filter="url(#riverAtmosphere)"
               />
 
-              {/* Layer 3: Moving Energy Segment */}
+              {/* River Layer 3: Main Luminous Inner Current */}
               <path 
-                className="stream-moving-energy"
                 d="M 1510 865 C 1475 820, 1390 785, 1320 745 C 1235 697, 1200 638, 1245 585 C 1295 526, 1380 500, 1370 446 C 1358 391, 1250 368, 1210 338 C 1170 308, 1195 275, 1245 249 C 1290 226, 1280 192, 1265 151 C 1252 117, 1260 84, 1270 50"
-                stroke="url(#aboutEnergyGrad)" 
-                strokeWidth="5.5" 
+                stroke="url(#riverGrad)" 
+                strokeWidth="16" 
                 strokeLinecap="round"
-                filter="url(#aboutSoftGlow)"
+                opacity="0.45" 
+                filter="url(#riverGlow)"
               />
 
-              {/* Subtle Leader Lines connecting dots to text annotations */}
+              {/* River Layer 4: Primary Upward Flowing Waves (9s duration) */}
+              <path 
+                className="river-current-primary"
+                d="M 1510 865 C 1475 820, 1390 785, 1320 745 C 1235 697, 1200 638, 1245 585 C 1295 526, 1380 500, 1370 446 C 1358 391, 1250 368, 1210 338 C 1170 308, 1195 275, 1245 249 C 1290 226, 1280 192, 1265 151 C 1252 117, 1260 84, 1270 50"
+                stroke="url(#riverGrad)" 
+                strokeWidth="7" 
+                strokeLinecap="round"
+                filter="url(#riverGlow)"
+              />
+
+              {/* River Layer 5: Secondary Faster Liquid Highlights (6.5s duration) */}
+              <path 
+                className="river-current-secondary"
+                d="M 1510 865 C 1475 820, 1390 785, 1320 745 C 1235 697, 1200 638, 1245 585 C 1295 526, 1380 500, 1370 446 C 1358 391, 1250 368, 1210 338 C 1170 308, 1195 275, 1245 249 C 1290 226, 1280 192, 1265 151 C 1252 117, 1260 84, 1270 50"
+                stroke="url(#riverHighlightGrad)" 
+                strokeWidth="4" 
+                strokeLinecap="round"
+                opacity="0.85"
+              />
+
+              {/* River Layer 6: Fast Inner Shimmer Ripples (4.5s duration) */}
+              <path 
+                className="river-current-fast"
+                d="M 1510 865 C 1475 820, 1390 785, 1320 745 C 1235 697, 1200 638, 1245 585 C 1295 526, 1380 500, 1370 446 C 1358 391, 1250 368, 1210 338 C 1170 308, 1195 275, 1245 249 C 1290 226, 1280 192, 1265 151 C 1252 117, 1260 84, 1270 50"
+                stroke="#ffffff" 
+                strokeWidth="2" 
+                strokeLinecap="round"
+                opacity="0.9"
+                filter="url(#riverGlow)"
+              />
+
+              {/* River Layer 7: Upward Floating Energy Sparks (11s duration) */}
+              <path 
+                className="river-sparks"
+                d="M 1510 865 C 1475 820, 1390 785, 1320 745 C 1235 697, 1200 638, 1245 585 C 1295 526, 1380 500, 1370 446 C 1358 391, 1250 368, 1210 338 C 1170 308, 1195 275, 1245 249 C 1290 226, 1280 192, 1265 151 C 1252 117, 1260 84, 1270 50"
+                stroke="#ffedd5" 
+                strokeWidth="3.5" 
+                strokeLinecap="round"
+                opacity="0.95"
+                filter="url(#particleGlow)"
+              />
+
+              {/* ============================================================ */}
+              {/* LEADER LINES CONNECTING GLASS PANELS TO EDITORIAL LABELS      */}
+              {/* ============================================================ */}
               {conceptualNodes.map((node) => (
                 <path
                   key={`leader-${node.id}`}
-                  d={node.leaderSvg}
-                  stroke="rgba(255, 255, 255, 0.22)"
+                  d={node.leaderD}
+                  stroke="rgba(255, 255, 255, 0.28)"
                   strokeWidth="1.2"
                   strokeDasharray="3 3"
                   strokeLinecap="round"
                 />
               ))}
-            </svg>
 
-            {/* Monolith Breathing Aura */}
-            <div className="monolith-glow-aura" />
-
-            {/* Central Message — Positioned in Dedicated Safe Zone (Mid-Left Atmosphere) */}
-            <div className="central-message-safezone">
-              <span className="central-msg-line1">See the system.</span>
-              <span className="central-msg-line2">Shape the outcome.</span>
-              <svg className="central-msg-underline" width="140" height="10" viewBox="0 0 140 10" fill="none">
-                <path d="M 4 5 Q 70 9 136 3" stroke="url(#aboutEnergyGrad)" strokeWidth="1.8" strokeLinecap="round" opacity="0.8" />
-              </svg>
-            </div>
-
-            {/* Node Dots & Distributed Editorial Text Annotations */}
-            <div className="conceptual-nodes-overlay">
+              {/* ============================================================ */}
+              {/* GLASS PANEL DOTS & ANCHOR HALOS                               */}
+              {/* ============================================================ */}
               {conceptualNodes.map((node) => (
-                <React.Fragment key={node.id}>
-                  {/* Glowing Node Dot on Artwork */}
-                  <div
-                    className={`about-concept-dot node-dot-${node.id}`}
-                    style={{ left: `${node.dotX}%`, top: `${node.dotY}%` }}
-                  >
-                    <div 
-                      className="about-dot-core"
-                      style={{ 
-                        backgroundColor: node.color,
-                        boxShadow: `0 0 10px ${node.glow}, 0 0 20px ${node.glow}`
-                      }}
-                    />
-                  </div>
+                <g key={`anchor-${node.id}`} transform={`translate(${node.dotX}, ${node.dotY})`}>
+                  <circle r="14" fill={node.glow} opacity="0.25" filter="url(#riverGlow)" />
+                  <circle className="node-dot-pulse" r="5" fill={node.color} />
+                  <circle r="2" fill="#ffffff" />
+                </g>
+              ))}
 
-                  {/* Non-overlapping Text Label Annotation */}
-                  <div 
-                    className={`about-concept-label label-align-${node.align}`}
-                    style={{ left: `${node.labelX}%`, top: `${node.labelY}%` }}
-                  >
+              {/* ============================================================ */}
+              {/* CENTRAL MESSAGE — SCALED IN SVG VIEWBOX SAFE ZONE             */}
+              {/* ============================================================ */}
+              <foreignObject x="750" y="460" width="330" height="110">
+                <div className="central-message-safezone">
+                  <span className="central-msg-line1">See the system.</span>
+                  <span className="central-msg-line2">Shape the outcome.</span>
+                  <svg className="central-msg-underline" width="140" height="10" viewBox="0 0 140 10" fill="none">
+                    <path d="M 4 5 Q 70 9 136 3" stroke="url(#riverGrad)" strokeWidth="1.8" strokeLinecap="round" opacity="0.85" />
+                  </svg>
+                </div>
+              </foreignObject>
+
+              {/* ============================================================ */}
+              {/* GLASS PANEL ANNOTATION LABELS — SCALED IN SVG VIEWBOX        */}
+              {/* ============================================================ */}
+              {conceptualNodes.map((node) => (
+                <foreignObject 
+                  key={`fo-${node.id}`}
+                  x={node.foX} 
+                  y={node.foY} 
+                  width={node.foWidth} 
+                  height={node.foHeight}
+                >
+                  <div className={`about-node-card align-${node.align}`}>
                     <span className="about-node-title">{node.title}</span>
                     <span className="about-node-subtitle">{node.subtitle}</span>
                   </div>
-                </React.Fragment>
+                </foreignObject>
               ))}
-            </div>
+
+            </svg>
+
+            {/* Monolith Light Breathing Aura */}
+            <div className="monolith-glow-aura" />
 
           </div>
         </div>
@@ -314,7 +392,7 @@ export default function AboutSection() {
       </div>
 
       <style>{`
-        /* 1. Environment & Container */
+        /* Container & Canvas Environment */
         .about-canvas-container {
           position: relative;
           min-height: 100vh;
@@ -352,7 +430,7 @@ export default function AboutSection() {
           pointer-events: none;
         }
 
-        /* Layout Grid */
+        /* Canvas Layout Grid */
         .about-canvas-layout {
           position: relative;
           z-index: 10;
@@ -447,31 +525,69 @@ export default function AboutSection() {
           position: relative;
           width: 100%;
           aspect-ratio: 1736 / 906;
-          max-height: 820px;
+          max-height: 850px;
           transition: transform 0.25s ease-out;
           will-change: transform;
         }
 
-        .about-stream-svg-overlay {
+        /* SVG Master Stage */
+        .about-master-svg-stage {
           position: absolute;
           inset: 0;
           width: 100%;
           height: 100%;
-          pointer-events: none;
           z-index: 15;
+          pointer-events: none;
         }
 
-        .stream-moving-energy {
-          stroke-dasharray: 40 1060;
+        /* ============================================================ */
+        /* RIVER ANIMATIONS — LIQUID LIGHT FLOWING UPWARD               */
+        /* ============================================================ */
+        .river-current-primary {
+          stroke-dasharray: 320 80;
           stroke-dashoffset: 0;
-          animation: energyFlowUpward 9s linear infinite;
+          animation: riverFlow1 9s linear infinite;
         }
 
-        @keyframes energyFlowUpward {
+        .river-current-secondary {
+          stroke-dasharray: 180 120;
+          stroke-dashoffset: 0;
+          animation: riverFlow2 6.5s linear infinite;
+        }
+
+        .river-current-fast {
+          stroke-dasharray: 80 220;
+          stroke-dashoffset: 0;
+          animation: riverFlow3 4.5s linear infinite;
+        }
+
+        .river-sparks {
+          stroke-dasharray: 10 350;
+          stroke-dashoffset: 0;
+          animation: riverFlow4 11s linear infinite;
+        }
+
+        @keyframes riverFlow1 {
           0% { stroke-dashoffset: 0; }
-          100% { stroke-dashoffset: -1100; }
+          100% { stroke-dashoffset: -1200; }
         }
 
+        @keyframes riverFlow2 {
+          0% { stroke-dashoffset: 0; }
+          100% { stroke-dashoffset: -1200; }
+        }
+
+        @keyframes riverFlow3 {
+          0% { stroke-dashoffset: 0; }
+          100% { stroke-dashoffset: -1200; }
+        }
+
+        @keyframes riverFlow4 {
+          0% { stroke-dashoffset: 0; }
+          100% { stroke-dashoffset: -1200; }
+        }
+
+        /* Monolith Light Breathing Glow */
         .monolith-glow-aura {
           position: absolute;
           top: 3.5%;
@@ -491,24 +607,32 @@ export default function AboutSection() {
           100% { opacity: 0.85; transform: scale(1.12); }
         }
 
-        /* Central Message — Dedicated Safe Zone Position (Mid-Left Negative Space) */
+        /* Node Dot Pulsing */
+        .node-dot-pulse {
+          animation: dotPulse 3.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes dotPulse {
+          0% { transform: scale(0.85); opacity: 0.8; }
+          100% { transform: scale(1.35); opacity: 1; }
+        }
+
+        /* Central Message Styling inside ForeignObject */
         .central-message-safezone {
-          position: absolute;
-          top: 55.5%;
-          left: 52.0%;
-          transform: translate(-50%, -50%) rotate(-3deg);
           display: flex;
           flex-direction: column;
           align-items: center;
-          z-index: 22;
-          pointer-events: none;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          transform: rotate(-3deg);
           user-select: none;
-          padding: 0.8rem 1.2rem;
+          pointer-events: auto;
         }
 
         .central-msg-line1 {
           font-family: var(--font-handwriting);
-          font-size: clamp(1.4rem, 1.8vw, 2.0rem);
+          font-size: 1.6rem;
           color: #e9d5ff;
           line-height: 1.0;
           text-shadow: 0 0 16px rgba(167, 139, 250, 0.75), 0 2px 10px rgba(0, 0, 0, 0.95);
@@ -516,7 +640,7 @@ export default function AboutSection() {
 
         .central-msg-line2 {
           font-family: var(--font-handwriting);
-          font-size: clamp(1.6rem, 2.1vw, 2.3rem);
+          font-size: 1.85rem;
           color: #f472b6;
           line-height: 1.05;
           margin-top: 0.1rem;
@@ -527,57 +651,27 @@ export default function AboutSection() {
           margin-top: -2px;
         }
 
-        /* Node Dots & Text Annotations Overlay */
-        .conceptual-nodes-overlay {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          z-index: 25;
-        }
-
-        .about-concept-dot {
-          position: absolute;
-          transform: translate(-50%, -50%);
-          z-index: 26;
-          pointer-events: auto;
-        }
-
-        .about-dot-core {
-          width: 9px;
-          height: 9px;
-          border-radius: 50%;
-          animation: dotPulse 3.5s ease-in-out infinite alternate;
-        }
-
-        @keyframes dotPulse {
-          0% { transform: scale(0.85); opacity: 0.8; }
-          100% { transform: scale(1.35); opacity: 1; }
-        }
-
-        .about-concept-label {
-          position: absolute;
-          transform: translate(0, -50%);
+        /* Glass Panel Annotation Cards inside ForeignObject */
+        .about-node-card {
           display: flex;
           flex-direction: column;
-          width: max-content;
-          max-width: 190px;
+          width: 100%;
+          height: 100%;
+          justify-content: center;
           pointer-events: auto;
-          z-index: 26;
         }
 
-        .label-align-left {
+        .align-left {
           align-items: flex-start;
           text-align: left;
         }
 
-        .label-align-right {
-          transform: translate(-100%, -50%);
+        .align-right {
           align-items: flex-end;
           text-align: right;
         }
 
-        .label-align-center {
-          transform: translate(-50%, -100%);
+        .align-center {
           align-items: center;
           text-align: center;
         }
@@ -630,17 +724,20 @@ export default function AboutSection() {
           .manifesto-subcopy {
             font-size: 0.95rem;
           }
-          .central-msg-line1 { font-size: 1.2rem; }
-          .central-msg-line2 { font-size: 1.4rem; }
+          .central-msg-line1 { font-size: 1.25rem; }
+          .central-msg-line2 { font-size: 1.45rem; }
           .about-node-title { font-size: 1.05rem !important; }
           .about-node-subtitle { font-size: 0.65rem !important; }
         }
 
         /* Prefers Reduced Motion Compliance */
         @media (prefers-reduced-motion: reduce) {
-          .stream-moving-energy,
+          .river-current-primary,
+          .river-current-secondary,
+          .river-current-fast,
+          .river-sparks,
           .monolith-glow-aura,
-          .about-dot-core {
+          .node-dot-pulse {
             animation: none !important;
           }
           .about-interactive-stage {
