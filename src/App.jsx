@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
-import TopHeader from './components/TopHeader';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import ProjectsSection from './components/ProjectsSection';
@@ -47,9 +46,6 @@ export default function App() {
     <div className="app-container">
       {/* Fixed Sidebar */}
       <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
-
-      {/* Fixed Top Bar Header */}
-      <TopHeader />
 
       {/* Main Content Scroll Container */}
       <main className="main-content">

@@ -28,7 +28,7 @@
   --border-dark: rgba(255, 255, 255, 0.1);
 
   --sidebar-width: 240px;
-  --header-height: 54px;
+  --header-height: 0px;
 
   --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
