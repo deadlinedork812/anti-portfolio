@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Sparkles, TrendingUp, Compass } from 'lucide-react';
+import { CheckCircle2, Sparkles, TrendingUp, Compass, ArrowUpRight } from 'lucide-react';
 
 import experienceBgAvif3840 from '../assets/experience-background-3840.avif';
 import experienceBgWebp3840 from '../assets/experience-background-3840.webp';
@@ -15,20 +15,21 @@ import amatresLogo from '../assets/amatres-logo.png';
 import stackboxLogo from '../assets/stackbox-logo.png';
 import stackproLogo from '../assets/stackpro-logo.png';
 
-// ─── 1. VERIFIED EXPERIENCE DATA (REVERSE CHRONOLOGICAL: NEWEST → OLDEST) ───
+// ─── 1. VERIFIED EXPERIENCE DATA (ORDER: NEWEST → OLDEST, EXACTLY 4 ROLES) ───
 const experiencesData = [
   {
     id: 'stackpro-fulltime',
     idx: '01',
-    company: 'StackPro Technologies Pvt. Ltd.',
-    shortCompany: 'StackPro Technologies',
+    company: 'StackPro Technologies',
+    fullCompany: 'StackPro Technologies Pvt. Ltd.',
     role: 'Full-Time — QA / Product Engineering',
     shortRole: 'Full-Time — QA / Product Eng',
-    period: 'Current / Present',
+    period: 'Present',
     navPeriod: 'PRESENT',
     logo: stackproLogo,
     badge: 'FULL-TIME · QA & PRODUCT ENG',
     badgeType: 'emerald',
+    isPromoted: true,
     isProgression: true,
     progressionRelation: 'Promoted from QA Engineering Intern → Full-Time QA / Product Engineering',
     stageId: 'stage-04',
@@ -44,24 +45,25 @@ const experiencesData = [
     ],
     tools: ['Manual QA', 'Product Engineering', 'WMS', 'Product Design', 'Defect Tracking', 'Release Quality'],
     metrics: [
-      { label: 'Role Scope', value: 'QA + Product Engineering' },
-      { label: 'Defects Tracked', value: '80+ Critical (ClickUp)' },
-      { label: 'Domain', value: 'WMS Core Operations' },
-      { label: 'Impact', value: 'Release Readiness & Prototypes' }
+      { label: 'ROLE SCOPE', value: 'QA + Product Engineering' },
+      { label: 'DEFECTS TRACKED', value: '80+ Critical (ClickUp)' },
+      { label: 'DOMAIN', value: 'WMS Core Operations' },
+      { label: 'IMPACT', value: 'Release Readiness & Prototypes' }
     ]
   },
   {
     id: 'stackpro-intern',
     idx: '02',
-    company: 'StackPro Technologies Pvt. Ltd.',
-    shortCompany: 'StackPro Technologies',
+    company: 'StackPro Technologies',
+    fullCompany: 'StackPro Technologies Pvt. Ltd.',
     role: 'QA Engineering Intern',
     shortRole: 'QA Engineering Intern',
-    period: 'Jan 2026 – Transitioned to Full-Time',
+    period: 'Jan 2026',
     navPeriod: 'JAN 2026',
     logo: stackproLogo,
     badge: 'ENTERPRISE QA INTERNSHIP',
     badgeType: 'amber',
+    isPromoted: false,
     isProgression: true,
     progressionRelation: 'Stepped up into Full-Time QA / Product Engineering at StackPro',
     stageId: 'stage-03',
@@ -77,24 +79,25 @@ const experiencesData = [
     ],
     tools: ['Manual QA', 'Functional Testing', 'WMS', 'Regression Testing', 'ClickUp'],
     metrics: [
-      { label: 'Workflows', value: 'Inbound, Outbound, PTL' },
-      { label: 'Testing Scope', value: 'Manual & Regression QA' },
-      { label: 'Tracking Tool', value: 'ClickUp Defect Pipeline' },
-      { label: 'Milestone', value: 'Promoted to Full-Time' }
+      { label: 'WORKFLOWS', value: 'Inbound, Outbound, PTL' },
+      { label: 'TESTING SCOPE', value: 'Manual & Regression QA' },
+      { label: 'TRACKING TOOL', value: 'ClickUp Defect Pipeline' },
+      { label: 'MILESTONE', value: 'Promoted to Full-Time' }
     ]
   },
   {
     id: 'stackbox-qa',
     idx: '03',
     company: 'StackBOX',
-    shortCompany: 'StackBOX',
+    fullCompany: 'StackBOX',
     role: 'QA Intern',
     shortRole: 'QA Intern',
-    period: 'Jun 2024 – Nov 2024',
+    period: 'Jun 2024',
     navPeriod: 'JUN 2024',
     logo: stackboxLogo,
     badge: 'QUALITY ENGINEERING INTERNSHIP',
     badgeType: 'indigo',
+    isPromoted: false,
     isProgression: false,
     progressionRelation: null,
     stageId: 'stage-02',
@@ -109,24 +112,25 @@ const experiencesData = [
     ],
     tools: ['Manual QA', 'Functional Testing', 'Regression', 'Defect Analysis'],
     metrics: [
-      { label: 'Core Discipline', value: 'Functional Testing' },
-      { label: 'Environment', value: 'Startup Supply Chain SaaS' },
-      { label: 'Methodology', value: 'Manual Test Execution' },
-      { label: 'Focus', value: 'Defect Analysis & Edge Cases' }
+      { label: 'CORE DISCIPLINE', value: 'Functional Testing' },
+      { label: 'ENVIRONMENT', value: 'Startup Supply Chain SaaS' },
+      { label: 'METHODOLOGY', value: 'Manual Test Execution' },
+      { label: 'QUALITY FOCUS', value: 'Defect Analysis & Edge Cases' }
     ]
   },
   {
     id: 'amatres-technologies',
     idx: '04',
     company: 'Amatres Technologies',
-    shortCompany: 'Amatres Technologies',
+    fullCompany: 'Amatres Technologies',
     role: 'Software Engineer Intern',
     shortRole: 'Software Engineer Intern',
-    period: 'Aug 2023 – Dec 2023',
+    period: 'Aug 2023 — Dec 2023',
     navPeriod: 'AUG 2023',
     logo: amatresLogo,
     badge: 'SOFTWARE ENGINEERING INTERNSHIP',
     badgeType: 'blue',
+    isPromoted: false,
     isProgression: false,
     progressionRelation: null,
     stageId: 'stage-01',
@@ -141,10 +145,10 @@ const experiencesData = [
     ],
     tools: ['AWS Lambda', 'REST APIs', 'CloudWatch', 'MSG91', 'Backend Development'],
     metrics: [
-      { label: 'Product Platform', value: 'AMAHealth Tele-Consultation' },
-      { label: 'Architecture', value: 'AWS Lambda Serverless' },
-      { label: 'Alerting Infra', value: 'MSG91 Gateway Integration' },
-      { label: 'Observability', value: 'AWS CloudWatch Logging' }
+      { label: 'PRODUCT PLATFORM', value: 'AMAHealth Tele-Consultation' },
+      { label: 'ARCHITECTURE', value: 'AWS Lambda Serverless' },
+      { label: 'ALERTING INFRA', value: 'MSG91 Gateway Integration' },
+      { label: 'OBSERVABILITY', value: 'AWS CloudWatch Logging' }
     ]
   }
 ];
@@ -186,8 +190,8 @@ const trajectoryStages = [
 ];
 
 export default function ExperienceSection() {
-  // Newest experience (StackPro Full-Time) is visually selected by default
-  const [selectedId, setSelectedId] = useState('stackpro-fulltime');
+  // Initially show Amatres Technologies as specified in Section 8
+  const [selectedId, setSelectedId] = useState('amatres-technologies');
 
   const selectedExp = experiencesData.find(e => e.id === selectedId) || experiencesData[0];
 
@@ -224,13 +228,14 @@ export default function ExperienceSection() {
             decoding="async"
           />
         </picture>
-        <div className="exp-ambient-glow" />
+        {/* Subtle Dark Atmospheric Overlay — allows landscape and calligraphy to breathe through */}
+        <div className="exp-dark-atmospheric-overlay" />
       </div>
 
       {/* ─── 2. MAIN CONTENT SURFACE ─── */}
       <div className="exp-content-wrap">
         
-        {/* Top Sub-Header Bar */}
+        {/* Top Header Bar */}
         <div className="exp-top-bar">
           <div className="exp-meta-group">
             <span className="exp-section-tag">04. EXPERIENCE</span>
@@ -238,13 +243,13 @@ export default function ExperienceSection() {
             <span className="exp-top-subtext">CAREER PROGRESSION · QUALITY · PRODUCT THINKING</span>
           </div>
 
-          <div className="exp-quote-block">
+          <div className="exp-quote-pill">
             <Sparkles size={13} className="exp-quote-icon" />
             <span className="exp-quote-text">Build it. Break it. Understand it.</span>
           </div>
         </div>
 
-        {/* Headline + Paragraph Row */}
+        {/* Hero Row: Display Heading + Supporting Copy */}
         <div className="exp-hero-row">
           <div className="exp-title-col">
             <h2 className="exp-display-headline">
@@ -263,7 +268,7 @@ export default function ExperienceSection() {
         {/* ─── 3. ASYMMETRIC 3-ZONE CAREER MAP BOARD ─── */}
         <div className="exp-career-board">
           
-          {/* ZONE 1: Career Progression Selector (Left) */}
+          {/* ZONE 1: Career Map Selector (Left Panel) */}
           <div className="exp-selector-col" role="tablist" aria-label="Career Experience Entries">
             <div className="selector-header-meta">
               <span className="selector-title">CAREER MAP</span>
@@ -293,32 +298,32 @@ export default function ExperienceSection() {
                         </div>
                         <div className="nav-card-text">
                           <div className="nav-card-company-row">
-                            <span className="nav-card-company">{exp.shortCompany || exp.company}</span>
-                            {isStackProFullTime && (
+                            <span className="nav-card-company">{exp.company}</span>
+                            {exp.isPromoted && (
                               <span className="nav-promotion-tag">PROMOTED</span>
                             )}
                           </div>
-                          <span className="nav-card-role">{exp.shortRole || exp.role}</span>
+                          <span className="nav-card-role">{exp.role}</span>
                         </div>
                       </div>
 
                       <div className="nav-card-right">
                         {isSelected ? (
-                          <span className="nav-active-pip" />
+                          <span className="nav-active-luminous-pip" />
                         ) : (
-                          <span className="nav-card-period">{exp.navPeriod}</span>
+                          <span className="nav-card-period">{exp.period}</span>
                         )}
                       </div>
                     </button>
 
-                    {/* Visual Progression Linker between 01 (Full-Time) and 02 (Intern) */}
+                    {/* Editorial Progression Marker between 01 and 02 */}
                     {isStackProFullTime && (
-                      <div className="nav-progression-connector" title="Career Progression: Intern to Full-Time">
-                        <span className="connector-stem" />
-                        <span className="connector-pill">
-                          <span className="connector-arrow">↑</span> PROMOTION: INTERN → FULL-TIME
+                      <div className="nav-progression-marker" title="Career Progression: Intern to Full-Time">
+                        <span className="marker-connector-line" />
+                        <span className="marker-pill">
+                          <span className="marker-arrow">↑</span> PROGRESSION: INTERN → FULL-TIME
                         </span>
-                        <span className="connector-stem" />
+                        <span className="marker-connector-line" />
                       </div>
                     )}
                   </React.Fragment>
@@ -327,7 +332,7 @@ export default function ExperienceSection() {
             </div>
           </div>
 
-          {/* ZONE 2: Active Experience Card (Center / Dominant) */}
+          {/* ZONE 2: Main Experience Detail Panel (Center / Dominant) */}
           <div className="exp-active-main-col">
             <AnimatePresence mode="wait">
               <motion.article
@@ -341,7 +346,7 @@ export default function ExperienceSection() {
                 transition={{ duration: 0.18, ease: 'easeOut' }}
                 className="exp-card-dominant"
               >
-                {/* 1. Card Header */}
+                {/* 1. Dominant Header */}
                 <div className="dominant-card-header">
                   <div className="header-company-info">
                     <div className="company-logo-frame">
@@ -358,7 +363,7 @@ export default function ExperienceSection() {
                   </div>
                 </div>
 
-                {/* 2. Career Progression Highlight Banner for StackPro entries */}
+                {/* 2. Progression Highlight Banner for StackPro entries */}
                 {selectedExp.isProgression && (
                   <div className="dominant-progression-banner">
                     <div className="progression-banner-left">
@@ -373,26 +378,26 @@ export default function ExperienceSection() {
                   </div>
                 )}
 
-                {/* 3. Short 1–2 Line Summary */}
+                {/* 3. Role Summary */}
                 <p className="dominant-card-summary">
                   {selectedExp.summary}
                 </p>
 
-                {/* 4. Meaningful Snapshot Highlights Strip (4 Key Attributes) */}
-                <div className="dominant-metrics-strip">
+                {/* 4. Experience Details: Four Compact Information Blocks */}
+                <div className="dominant-details-grid">
                   {selectedExp.metrics.map((m, idx) => (
-                    <div key={idx} className="metric-pill">
-                      <span className="metric-label">{m.label}</span>
-                      <span className="metric-value">{m.value}</span>
+                    <div key={idx} className="detail-mini-panel">
+                      <span className="detail-panel-label">{m.label}</span>
+                      <span className="detail-panel-value">{m.value}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* 5. What I Worked On (Rich Detailed Bullets) */}
+                {/* 5. What I Worked On Rows */}
                 <div className="dominant-work-section">
                   <div className="work-section-header">
                     <span className="dominant-section-label">WHAT I WORKED ON</span>
-                    <span className="work-bullets-count">{selectedExp.whatIWorkedOn.length} CORE RESPONSIBILITIES</span>
+                    <span className="work-bullets-count">{selectedExp.whatIWorkedOn.length} RESPONSIBILITIES</span>
                   </div>
                   <ul className="dominant-work-list">
                     {selectedExp.whatIWorkedOn.map((item, idx) => (
@@ -404,7 +409,7 @@ export default function ExperienceSection() {
                   </ul>
                 </div>
 
-                {/* 6. Tools / Technologies / Focus Footer */}
+                {/* 6. Technology Footer */}
                 <div className="dominant-tools-footer">
                   <span className="tools-footer-label">FOCUS &amp; TECHNOLOGIES</span>
                   <div className="dominant-tools-row">
@@ -417,10 +422,10 @@ export default function ExperienceSection() {
             </AnimatePresence>
           </div>
 
-          {/* ZONE 3: Context & Progression Trajectory (Right) */}
+          {/* ZONE 3: Right Panels (Career Trajectory & Core Perspective) */}
           <div className="exp-context-col">
             
-            {/* Real Career Trajectory Card: 4 Stages */}
+            {/* Career Trajectory Card: 4 Stages */}
             <div className="exp-context-card progression-trajectory-card">
               <div className="context-card-header">
                 <TrendingUp size={14} className="context-icon" />
@@ -466,15 +471,15 @@ export default function ExperienceSection() {
             </div>
 
             {/* Core Perspective Panel */}
-            <div className="exp-context-card philosophy-context-card">
+            <div className="exp-context-card perspective-context-card">
               <div className="context-card-header">
                 <Compass size={14} className="context-icon" />
                 <span className="context-card-title">CORE PERSPECTIVE</span>
               </div>
-              <p className="philosophy-context-body">
+              <p className="perspective-context-body">
                 Quality isn't just catching bugs before deployment. It's understanding how users, business logic, product decisions, and operational edge cases converge in the real world.
               </p>
-              <div className="philosophy-micro-tags">
+              <div className="perspective-micro-tags">
                 <span className="micro-tag">Development</span>
                 <span className="micro-arrow">→</span>
                 <span className="micro-tag">Quality</span>
@@ -487,7 +492,7 @@ export default function ExperienceSection() {
 
         </div>
 
-        {/* ─── 4. BOTTOM LANDSCAPE VIEWPORT CLEARANCE (Preserves artwork calligraphy unobstructed) ─── */}
+        {/* ─── 4. BOTTOM LANDSCAPE VIEWPORT CLEARANCE (Preserves artwork & handwriting calligraphy) ─── */}
         <div className="exp-landscape-spacer" aria-hidden="true" />
 
       </div>
@@ -502,16 +507,16 @@ export default function ExperienceSection() {
           width: 100%;
           overflow: hidden;
           box-sizing: border-box;
-          background-color: #f3f6fa;
-          color: #0f172a;
+          background-color: #040817;
+          color: #f8fafc;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          padding: clamp(0.6rem, 1.3vh, 1.1rem) clamp(1.2rem, 2.5vw, 2.8rem);
+          padding: clamp(0.55rem, 1.2vh, 1rem) clamp(1.2rem, 2.4vw, 2.6rem);
           scroll-snap-align: start;
         }
 
-        /* ─── 1. Background Environmental Layer ─── */
+        /* ─── 1. Background Environmental Layer (Artwork Foundation) ─── */
         .exp-bg-wrapper {
           position: absolute;
           inset: 0;
@@ -536,15 +541,16 @@ export default function ExperienceSection() {
           display: block;
         }
 
-        .exp-ambient-glow {
+        /* Subtle Dark Atmospheric Overlay: provides dark contrast while letting landscape & water breathe */
+        .exp-dark-atmospheric-overlay {
           position: absolute;
           inset: 0;
           background: linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.48) 0%,
-            rgba(255, 255, 255, 0.22) 35%,
-            rgba(255, 255, 255, 0.05) 70%,
-            transparent 100%
+            180deg,
+            rgba(4, 8, 22, 0.78) 0%,
+            rgba(5, 10, 28, 0.68) 45%,
+            rgba(5, 10, 28, 0.46) 78%,
+            rgba(4, 7, 18, 0.58) 100%
           );
           pointer-events: none;
         }
@@ -554,6 +560,8 @@ export default function ExperienceSection() {
           position: relative;
           z-index: 5;
           width: 100%;
+          max-width: 1680px;
+          margin: 0 auto;
           height: 100%;
           display: flex;
           flex-direction: column;
@@ -566,7 +574,7 @@ export default function ExperienceSection() {
           align-items: center;
           justify-content: space-between;
           flex-shrink: 0;
-          margin-bottom: clamp(0.12rem, 0.3vh, 0.3rem);
+          margin-bottom: clamp(0.1rem, 0.28vh, 0.26rem);
         }
 
         .exp-meta-group {
@@ -580,11 +588,11 @@ export default function ExperienceSection() {
           font-size: clamp(0.66rem, 0.8vh, 0.74rem);
           font-weight: 800;
           letter-spacing: 0.12em;
-          color: #4f46e5;
+          color: #a78bfa;
         }
 
         .exp-sep {
-          color: #cbd5e1;
+          color: rgba(255, 255, 255, 0.22);
           font-weight: 300;
         }
 
@@ -593,30 +601,31 @@ export default function ExperienceSection() {
           font-size: clamp(0.58rem, 0.7vh, 0.66rem);
           font-weight: 600;
           letter-spacing: 0.08em;
-          color: #64748b;
+          color: #94a3b8;
         }
 
-        .exp-quote-block {
+        .exp-quote-pill {
           display: flex;
           align-items: center;
           gap: 0.45rem;
-          background: rgba(255, 255, 255, 0.76);
-          backdrop-filter: blur(8px);
-          padding: 0.18rem 0.65rem;
+          background: rgba(15, 23, 42, 0.65);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          padding: 0.16rem 0.65rem;
           border-radius: 9999px;
-          border: 1px solid rgba(255, 255, 255, 0.88);
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
         }
 
         .exp-quote-icon {
-          color: #6366f1;
+          color: #c084fc;
         }
 
         .exp-quote-text {
           font-family: var(--font-mono);
           font-size: 0.62rem;
           font-weight: 600;
-          color: #334155;
+          color: #e2e8f0;
           letter-spacing: 0.02em;
         }
 
@@ -626,27 +635,28 @@ export default function ExperienceSection() {
           align-items: flex-end;
           justify-content: space-between;
           gap: clamp(1rem, 2vw, 2.5rem);
-          margin-bottom: clamp(0.2rem, 0.45vh, 0.45rem);
+          margin-bottom: clamp(0.2rem, 0.4vh, 0.42rem);
           flex-shrink: 0;
         }
 
         .exp-title-col {
-          flex: 1.1;
+          flex: 1.15;
         }
 
         .exp-display-headline {
           font-family: var(--font-display);
-          font-size: clamp(1.25rem, 1.75vw + 0.45vh, 2.1rem);
+          font-size: clamp(1.22rem, 1.7vw + 0.42vh, 2.05rem);
           font-weight: 800;
-          line-height: 1.06;
+          line-height: 1.08;
           letter-spacing: -0.025em;
-          color: #0f172a;
+          color: #ffffff;
           margin: 0;
         }
 
         .word-improve {
-          color: #4f46e5;
+          color: #c084fc;
           position: relative;
+          text-shadow: 0 0 24px rgba(192, 132, 252, 0.35);
         }
 
         .exp-intro-col {
@@ -656,26 +666,26 @@ export default function ExperienceSection() {
 
         .exp-sub-paragraph {
           font-family: var(--font-sans);
-          font-size: clamp(0.7rem, 0.84vh, 0.82rem);
+          font-size: clamp(0.68rem, 0.82vh, 0.8rem);
           line-height: 1.42;
-          color: #475569;
+          color: #94a3b8;
           margin: 0;
         }
 
         /* ─── 3. ASYMMETRIC 3-ZONE CAREER MAP BOARD ─── */
         .exp-career-board {
           display: flex;
-          gap: clamp(0.6rem, 0.9vw, 1rem);
+          gap: clamp(0.55rem, 0.85vw, 0.95rem);
           width: 100%;
-          height: clamp(450px, 57vh, 550px);
-          max-height: clamp(450px, 58vh, 560px);
+          height: clamp(450px, 57vh, 555px);
+          max-height: clamp(450px, 58vh, 565px);
           min-height: 0;
           flex-shrink: 0;
         }
 
-        /* ── ZONE 1: Career Progression Selector (Left) ── */
+        /* ── ZONE 1: Career Progression Selector (Left Panel) ── */
         .exp-selector-col {
-          width: clamp(230px, 20vw, 275px);
+          width: clamp(255px, 21.5vw, 305px);
           display: flex;
           flex-direction: column;
           gap: 0.3rem;
@@ -697,20 +707,20 @@ export default function ExperienceSection() {
           font-size: 0.62rem;
           font-weight: 800;
           letter-spacing: 0.1em;
-          color: #475569;
+          color: #94a3b8;
         }
 
         .selector-count {
           font-family: var(--font-mono);
           font-size: 0.56rem;
           font-weight: 700;
-          color: #6366f1;
+          color: #a78bfa;
         }
 
         .exp-selector-list {
           display: flex;
           flex-direction: column;
-          gap: clamp(0.3rem, 0.55vh, 0.45rem);
+          gap: clamp(0.3rem, 0.52vh, 0.42rem);
           flex: 1;
           min-height: 0;
           justify-content: space-between;
@@ -720,32 +730,32 @@ export default function ExperienceSection() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: clamp(0.4rem, 0.7vh, 0.6rem) clamp(0.55rem, 0.75vw, 0.75rem);
-          background: rgba(255, 255, 255, 0.78);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border: 1px solid rgba(255, 255, 255, 0.88);
+          padding: clamp(0.38rem, 0.68vh, 0.58rem) clamp(0.55rem, 0.72vw, 0.72rem);
+          background: rgba(6, 12, 32, 0.72);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          border: 1px solid rgba(255, 255, 255, 0.09);
           border-radius: 12px;
           cursor: pointer;
           transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
           text-align: left;
           outline: none;
-          box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.03);
+          box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.4);
           flex: 1;
           min-height: 0;
         }
 
         .exp-nav-card:hover {
-          background: rgba(255, 255, 255, 0.94);
-          border-color: rgba(99, 102, 241, 0.35);
+          background: rgba(12, 20, 50, 0.82);
+          border-color: rgba(167, 139, 250, 0.35);
           transform: translateY(-1.5px);
-          box-shadow: 0 6px 14px -3px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 6px 20px -3px rgba(0, 0, 0, 0.5);
         }
 
         .exp-nav-card.active {
-          background: #ffffff;
-          border-color: #4f46e5;
-          box-shadow: 0 8px 20px -4px rgba(79, 70, 229, 0.16), 0 0 0 1.5px #4f46e5;
+          background: rgba(15, 24, 60, 0.88);
+          border-color: rgba(167, 139, 250, 0.7);
+          box-shadow: 0 0 16px rgba(139, 92, 246, 0.25), 0 8px 24px -4px rgba(0, 0, 0, 0.55);
         }
 
         .nav-card-left {
@@ -759,20 +769,20 @@ export default function ExperienceSection() {
           font-family: var(--font-mono);
           font-size: 0.64rem;
           font-weight: 800;
-          color: #94a3b8;
+          color: #64748b;
           flex-shrink: 0;
         }
 
         .exp-nav-card.active .nav-card-idx {
-          color: #4f46e5;
+          color: #a78bfa;
         }
 
         .nav-card-logo-wrap {
           width: 26px;
           height: 26px;
           border-radius: 6px;
-          background: #f8fafc;
-          border: 1px solid rgba(0, 0, 0, 0.08);
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.12);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -803,9 +813,9 @@ export default function ExperienceSection() {
 
         .nav-card-company {
           font-family: var(--font-sans);
-          font-size: clamp(0.66rem, 0.82vh, 0.74rem);
+          font-size: clamp(0.62rem, 0.78vh, 0.71rem);
           font-weight: 700;
-          color: #0f172a;
+          color: #ffffff;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -813,12 +823,12 @@ export default function ExperienceSection() {
 
         .nav-promotion-tag {
           font-family: var(--font-mono);
-          font-size: 0.5rem;
+          font-size: 0.44rem;
           font-weight: 800;
-          color: #059669;
-          background: rgba(5, 150, 105, 0.1);
-          border: 1px solid rgba(5, 150, 105, 0.2);
-          padding: 0.04rem 0.3rem;
+          color: #34d399;
+          background: rgba(16, 185, 129, 0.16);
+          border: 1px solid rgba(16, 185, 129, 0.35);
+          padding: 0.02rem 0.26rem;
           border-radius: 3px;
           letter-spacing: 0.04em;
           flex-shrink: 0;
@@ -827,14 +837,14 @@ export default function ExperienceSection() {
         .nav-card-role {
           font-family: var(--font-mono);
           font-size: clamp(0.54rem, 0.66vh, 0.6rem);
-          color: #64748b;
+          color: #94a3b8;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
         }
 
         .exp-nav-card.active .nav-card-role {
-          color: #4f46e5;
+          color: #c4b5fd;
           font-weight: 600;
         }
 
@@ -843,25 +853,25 @@ export default function ExperienceSection() {
           margin-left: 0.35rem;
         }
 
-        .nav-active-pip {
+        .nav-active-luminous-pip {
           display: block;
           width: 7px;
           height: 7px;
           border-radius: 50%;
-          background: #4f46e5;
-          box-shadow: 0 0 8px rgba(79, 70, 229, 0.8);
+          background: #a78bfa;
+          box-shadow: 0 0 10px #c084fc;
         }
 
         .nav-card-period {
           font-family: var(--font-mono);
-          font-size: 0.56rem;
-          color: #94a3b8;
+          font-size: 0.54rem;
+          color: #64748b;
           white-space: nowrap;
           font-weight: 600;
         }
 
-        /* Career Progression Connector between 01 and 02 */
-        .nav-progression-connector {
+        /* Editorial Progression Marker between 01 and 02 */
+        .nav-progression-marker {
           display: flex;
           align-items: center;
           gap: 0.35rem;
@@ -869,34 +879,34 @@ export default function ExperienceSection() {
           flex-shrink: 0;
         }
 
-        .connector-stem {
+        .marker-connector-line {
           flex: 1;
           height: 1px;
-          background: linear-gradient(to right, rgba(99, 102, 241, 0.15), rgba(99, 102, 241, 0.35));
+          background: linear-gradient(to right, rgba(167, 139, 250, 0.15), rgba(167, 139, 250, 0.35));
         }
 
-        .connector-pill {
+        .marker-pill {
           display: flex;
           align-items: center;
           gap: 0.25rem;
           font-family: var(--font-mono);
           font-size: 0.52rem;
           font-weight: 700;
-          color: #4f46e5;
-          background: rgba(79, 70, 229, 0.08);
-          border: 1px solid rgba(79, 70, 229, 0.18);
+          color: #c084fc;
+          background: rgba(139, 92, 246, 0.12);
+          border: 1px solid rgba(139, 92, 246, 0.25);
           padding: 0.08rem 0.4rem;
           border-radius: 999px;
           white-space: nowrap;
           letter-spacing: 0.04em;
         }
 
-        .connector-arrow {
+        .marker-arrow {
           font-size: 0.6rem;
           font-weight: 800;
         }
 
-        /* ── ZONE 2: Active Experience Card (Center / Dominant) ── */
+        /* ── ZONE 2: Active Experience Card (Center / Dominant Panel) ── */
         .exp-active-main-col {
           flex: 1.45;
           display: flex;
@@ -906,19 +916,19 @@ export default function ExperienceSection() {
         }
 
         .exp-card-dominant {
-          background: rgba(255, 255, 255, 0.89);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.96);
-          border-radius: 18px;
+          background: rgba(5, 10, 28, 0.74);
+          backdrop-filter: blur(18px);
+          -webkit-backdrop-filter: blur(18px);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 16px;
           padding: clamp(0.7rem, 1.1vh, 1rem);
-          box-shadow: 0 12px 32px -8px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(99, 102, 241, 0.06);
+          box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.04);
           display: flex;
           flex-direction: column;
           height: 100%;
           min-height: 0;
           overflow: hidden;
-          gap: clamp(0.25rem, 0.5vh, 0.45rem);
+          gap: clamp(0.24rem, 0.48vh, 0.42rem);
         }
 
         .dominant-card-header {
@@ -940,9 +950,9 @@ export default function ExperienceSection() {
           width: clamp(38px, 4.2vw, 46px);
           height: clamp(38px, 4.2vw, 46px);
           border-radius: 12px;
-          background: #ffffff;
-          border: 1px solid rgba(0, 0, 0, 0.08);
-          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -973,7 +983,7 @@ export default function ExperienceSection() {
 
         .exp-badge {
           font-family: var(--font-mono);
-          font-size: 0.56rem;
+          font-size: 0.54rem;
           font-weight: 700;
           letter-spacing: 0.06em;
           padding: 0.1rem 0.42rem;
@@ -981,35 +991,36 @@ export default function ExperienceSection() {
         }
 
         .badge-blue {
-          color: #0284c7;
-          background: rgba(2, 132, 199, 0.09);
-          border: 1px solid rgba(2, 132, 199, 0.22);
+          color: #60a5fa;
+          background: rgba(59, 130, 246, 0.14);
+          border: 1px solid rgba(59, 130, 246, 0.28);
         }
 
         .badge-indigo {
-          color: #4f46e5;
-          background: rgba(79, 70, 229, 0.09);
-          border: 1px solid rgba(79, 70, 229, 0.22);
+          color: #a78bfa;
+          background: rgba(139, 92, 246, 0.14);
+          border: 1px solid rgba(139, 92, 246, 0.28);
         }
 
         .badge-amber {
-          color: #d97706;
-          background: rgba(217, 119, 6, 0.09);
-          border: 1px solid rgba(217, 119, 6, 0.22);
+          color: #fbbf24;
+          background: rgba(245, 158, 11, 0.14);
+          border: 1px solid rgba(245, 158, 11, 0.28);
         }
 
         .badge-emerald {
-          color: #059669;
-          background: rgba(5, 150, 105, 0.09);
-          border: 1px solid rgba(5, 150, 105, 0.22);
+          color: #34d399;
+          background: rgba(16, 185, 129, 0.14);
+          border: 1px solid rgba(16, 185, 129, 0.28);
         }
 
         .exp-period-pill {
           font-family: var(--font-mono);
-          font-size: 0.56rem;
+          font-size: 0.54rem;
           font-weight: 600;
-          color: #64748b;
-          background: #f1f5f9;
+          color: #94a3b8;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.08);
           padding: 0.1rem 0.42rem;
           border-radius: 4px;
         }
@@ -1018,7 +1029,7 @@ export default function ExperienceSection() {
           font-family: var(--font-display);
           font-size: clamp(0.95rem, 1.3vw, 1.2rem);
           font-weight: 800;
-          color: #0f172a;
+          color: #ffffff;
           margin: 0;
           line-height: 1.2;
         }
@@ -1027,7 +1038,7 @@ export default function ExperienceSection() {
           font-family: var(--font-mono);
           font-size: clamp(0.64rem, 0.78vh, 0.72rem);
           font-weight: 600;
-          color: #4f46e5;
+          color: #a78bfa;
           margin: 0;
         }
 
@@ -1036,10 +1047,10 @@ export default function ExperienceSection() {
           display: flex;
           align-items: center;
           gap: 0.6rem;
-          background: linear-gradient(90deg, rgba(79, 70, 229, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
-          border: 1px solid rgba(79, 70, 229, 0.16);
+          background: linear-gradient(90deg, rgba(139, 92, 246, 0.15) 0%, rgba(16, 185, 129, 0.12) 100%);
+          border: 1px solid rgba(167, 139, 250, 0.25);
           border-radius: 8px;
-          padding: clamp(0.22rem, 0.38vh, 0.35rem) clamp(0.55rem, 0.8vw, 0.75rem);
+          padding: clamp(0.2rem, 0.36vh, 0.32rem) clamp(0.55rem, 0.8vw, 0.75rem);
           flex-shrink: 0;
         }
 
@@ -1054,8 +1065,8 @@ export default function ExperienceSection() {
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: #10b981;
-          box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+          background: #34d399;
+          box-shadow: 0 0 8px rgba(52, 211, 153, 0.8);
         }
 
         .progression-banner-tag {
@@ -1063,7 +1074,7 @@ export default function ExperienceSection() {
           font-size: 0.54rem;
           font-weight: 800;
           letter-spacing: 0.08em;
-          color: #4f46e5;
+          color: #c084fc;
         }
 
         .progression-banner-content {
@@ -1074,7 +1085,7 @@ export default function ExperienceSection() {
           font-family: var(--font-sans);
           font-size: clamp(0.6rem, 0.75vh, 0.68rem);
           font-weight: 600;
-          color: #0f172a;
+          color: #f1f5f9;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -1082,43 +1093,43 @@ export default function ExperienceSection() {
         }
 
         .progression-arrow {
-          color: #10b981;
+          color: #34d399;
           font-weight: 800;
           padding: 0 0.2rem;
         }
 
         .dominant-card-summary {
           font-family: var(--font-sans);
-          font-size: clamp(0.66rem, 0.82vh, 0.76rem);
+          font-size: clamp(0.66rem, 0.82vh, 0.75rem);
           line-height: 1.42;
-          color: #334155;
+          color: #cbd5e1;
           margin: 0;
           flex-shrink: 0;
         }
 
-        /* Meaningful Metrics Strip */
-        .dominant-metrics-strip {
+        /* Experience Details: Four Compact Information Blocks */
+        .dominant-details-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 0.35rem;
           flex-shrink: 0;
         }
 
-        .metric-pill {
-          background: #f8fafc;
-          border: 1px solid rgba(0, 0, 0, 0.05);
+        .detail-mini-panel {
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(255, 255, 255, 0.08);
           border-radius: 6px;
           padding: clamp(0.2rem, 0.35vh, 0.3rem) 0.45rem;
           display: flex;
           flex-direction: column;
-          gap: 0.03rem;
+          gap: 0.04rem;
         }
 
-        .metric-label {
+        .detail-panel-label {
           font-family: var(--font-mono);
           font-size: 0.48rem;
           font-weight: 700;
-          color: #64748b;
+          color: #818cf8;
           letter-spacing: 0.04em;
           text-transform: uppercase;
           white-space: nowrap;
@@ -1126,21 +1137,21 @@ export default function ExperienceSection() {
           text-overflow: ellipsis;
         }
 
-        .metric-value {
+        .detail-panel-value {
           font-family: var(--font-sans);
           font-size: clamp(0.6rem, 0.74vh, 0.68rem);
           font-weight: 700;
-          color: #0f172a;
+          color: #f8fafc;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
         }
 
-        /* What I Worked On Section */
+        /* What I Worked On Rows */
         .dominant-work-section {
           display: flex;
           flex-direction: column;
-          gap: clamp(0.14rem, 0.28vh, 0.24rem);
+          gap: clamp(0.14rem, 0.26vh, 0.22rem);
           flex: 1;
           min-height: 0;
           overflow-y: auto;
@@ -1156,12 +1167,12 @@ export default function ExperienceSection() {
         }
 
         .dominant-work-section::-webkit-scrollbar-thumb {
-          background: rgba(99, 102, 241, 0.25);
+          background: rgba(167, 139, 250, 0.25);
           border-radius: 4px;
         }
 
         .dominant-work-section::-webkit-scrollbar-thumb:hover {
-          background: rgba(99, 102, 241, 0.5);
+          background: rgba(167, 139, 250, 0.5);
         }
 
         .work-section-header {
@@ -1177,7 +1188,7 @@ export default function ExperienceSection() {
           font-size: 0.58rem;
           font-weight: 800;
           letter-spacing: 0.08em;
-          color: #64748b;
+          color: #94a3b8;
           display: block;
         }
 
@@ -1185,7 +1196,7 @@ export default function ExperienceSection() {
           font-family: var(--font-mono);
           font-size: 0.52rem;
           font-weight: 700;
-          color: #94a3b8;
+          color: #64748b;
           letter-spacing: 0.05em;
         }
 
@@ -1195,24 +1206,24 @@ export default function ExperienceSection() {
           margin: 0;
           display: flex;
           flex-direction: column;
-          gap: clamp(0.14rem, 0.28vh, 0.24rem);
+          gap: clamp(0.14rem, 0.26vh, 0.22rem);
         }
 
         .dominant-work-item {
           display: flex;
           align-items: flex-start;
           gap: 0.42rem;
-          font-size: clamp(0.64rem, 0.78vh, 0.73rem);
+          font-size: clamp(0.64rem, 0.78vh, 0.72rem);
           line-height: 1.34;
-          color: #1e293b;
-          background: rgba(248, 250, 252, 0.7);
-          border: 1px solid rgba(0, 0, 0, 0.03);
+          color: #e2e8f0;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.06);
           border-radius: 6px;
-          padding: clamp(0.18rem, 0.32vh, 0.28rem) clamp(0.35rem, 0.5vw, 0.5rem);
+          padding: clamp(0.16rem, 0.3vh, 0.26rem) clamp(0.35rem, 0.5vw, 0.5rem);
         }
 
         .work-bullet-icon {
-          color: #10b981;
+          color: #34d399;
           flex-shrink: 0;
           margin-top: 2px;
         }
@@ -1223,17 +1234,17 @@ export default function ExperienceSection() {
 
         /* Dominant Tools Footer */
         .dominant-tools-footer {
-          border-top: 1px solid rgba(0, 0, 0, 0.06);
-          padding-top: clamp(0.24rem, 0.4vh, 0.38rem);
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          padding-top: clamp(0.22rem, 0.38vh, 0.35rem);
           flex-shrink: 0;
         }
 
         .tools-footer-label {
           font-family: var(--font-mono);
-          font-size: 0.56rem;
+          font-size: 0.54rem;
           font-weight: 800;
           letter-spacing: 0.08em;
-          color: #64748b;
+          color: #94a3b8;
           display: block;
           margin-bottom: 0.2rem;
         }
@@ -1248,14 +1259,14 @@ export default function ExperienceSection() {
           font-family: var(--font-mono);
           font-size: clamp(0.56rem, 0.7vh, 0.62rem);
           font-weight: 600;
-          color: #475569;
-          background: #f1f5f9;
-          padding: 0.12rem 0.42rem;
+          color: #c4b5fd;
+          background: rgba(139, 92, 246, 0.12);
+          padding: 0.1rem 0.42rem;
           border-radius: 4px;
-          border: 1px solid rgba(0, 0, 0, 0.04);
+          border: 1px solid rgba(139, 92, 246, 0.24);
         }
 
-        /* ── ZONE 3: Context & Progression Trajectory (Right) ── */
+        /* ── ZONE 3: Right Panels (Career Trajectory & Core Perspective) ── */
         .exp-context-col {
           width: clamp(230px, 20vw, 280px);
           display: flex;
@@ -1267,13 +1278,13 @@ export default function ExperienceSection() {
         }
 
         .exp-context-card {
-          background: rgba(255, 255, 255, 0.82);
+          background: rgba(5, 10, 28, 0.74);
           backdrop-filter: blur(14px);
           -webkit-backdrop-filter: blur(14px);
-          border: 1px solid rgba(255, 255, 255, 0.92);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 14px;
           padding: clamp(0.55rem, 0.9vh, 0.85rem);
-          box-shadow: 0 4px 16px -3px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.45);
         }
 
         .progression-trajectory-card {
@@ -1288,12 +1299,12 @@ export default function ExperienceSection() {
           display: flex;
           align-items: center;
           gap: 0.45rem;
-          margin-bottom: clamp(0.25rem, 0.45vh, 0.45rem);
+          margin-bottom: clamp(0.22rem, 0.4vh, 0.4rem);
           flex-shrink: 0;
         }
 
         .context-icon {
-          color: #4f46e5;
+          color: #a78bfa;
         }
 
         .context-card-title {
@@ -1301,7 +1312,7 @@ export default function ExperienceSection() {
           font-size: 0.62rem;
           font-weight: 800;
           letter-spacing: 0.08em;
-          color: #0f172a;
+          color: #ffffff;
         }
 
         /* Trajectory Timeline */
@@ -1325,11 +1336,11 @@ export default function ExperienceSection() {
         }
 
         .timeline-stage-node:hover {
-          background: rgba(255, 255, 255, 0.6);
+          background: rgba(255, 255, 255, 0.05);
         }
 
         .timeline-stage-node.current-stage {
-          background: rgba(79, 70, 229, 0.06);
+          background: rgba(139, 92, 246, 0.1);
         }
 
         .stage-marker {
@@ -1345,33 +1356,33 @@ export default function ExperienceSection() {
           width: 7px;
           height: 7px;
           border-radius: 50%;
-          background: #94a3b8;
+          background: #64748b;
           transition: all 0.2s ease;
         }
 
         .timeline-stage-node.current-stage .marker-dot {
-          background: #4f46e5;
-          box-shadow: 0 0 8px rgba(79, 70, 229, 0.8);
-          transform: scale(1.15);
+          background: #c084fc;
+          box-shadow: 0 0 10px rgba(192, 132, 252, 0.85);
+          transform: scale(1.2);
         }
 
         .marker-line {
           width: 1.5px;
           height: clamp(18px, 2.8vh, 28px);
-          background: linear-gradient(to bottom, #cbd5e1, #e2e8f0);
+          background: linear-gradient(to bottom, #334155, #1e293b);
           margin-top: 3px;
         }
 
         .timeline-stage-node.current-stage + .timeline-stage-node .marker-line,
         .timeline-stage-node.current-stage .marker-line {
-          background: linear-gradient(to bottom, #818cf8, #cbd5e1);
+          background: linear-gradient(to bottom, #818cf8, #334155);
         }
 
         .stage-content {
           display: flex;
           flex-direction: column;
           min-width: 0;
-          gap: 0.05rem;
+          gap: 0.04rem;
         }
 
         .stage-tag-row {
@@ -1385,7 +1396,7 @@ export default function ExperienceSection() {
           font-size: 0.5rem;
           font-weight: 800;
           letter-spacing: 0.06em;
-          color: #64748b;
+          color: #818cf8;
         }
 
         .stage-company-name {
@@ -1399,25 +1410,25 @@ export default function ExperienceSection() {
           font-family: var(--font-sans);
           font-size: clamp(0.64rem, 0.78vh, 0.72rem);
           font-weight: 700;
-          color: #0f172a;
+          color: #ffffff;
           line-height: 1.15;
         }
 
         .timeline-stage-node.current-stage .stage-name {
-          color: #4f46e5;
+          color: #c084fc;
         }
 
         .stage-desc {
           font-family: var(--font-sans);
           font-size: clamp(0.56rem, 0.68vh, 0.63rem);
-          color: #64748b;
+          color: #94a3b8;
           line-height: 1.22;
         }
 
         .trajectory-footer-evolution {
           margin-top: clamp(0.2rem, 0.35vh, 0.35rem);
           padding-top: 0.22rem;
-          border-top: 1px dashed rgba(0, 0, 0, 0.07);
+          border-top: 1px dashed rgba(255, 255, 255, 0.1);
           display: flex;
           align-items: center;
           gap: 0.35rem;
@@ -1427,7 +1438,7 @@ export default function ExperienceSection() {
           font-family: var(--font-mono);
           font-size: 0.5rem;
           font-weight: 800;
-          color: #475569;
+          color: #94a3b8;
           letter-spacing: 0.06em;
         }
 
@@ -1435,47 +1446,48 @@ export default function ExperienceSection() {
           font-family: var(--font-mono);
           font-size: 0.52rem;
           font-weight: 700;
-          color: #4f46e5;
+          color: #a78bfa;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
         }
 
-        /* Philosophy Card */
-        .philosophy-context-card {
+        /* Perspective Card */
+        .perspective-context-card {
           flex: 1;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
         }
 
-        .philosophy-context-body {
+        .perspective-context-body {
           font-family: var(--font-sans);
           font-size: clamp(0.62rem, 0.76vh, 0.7rem);
           line-height: 1.42;
-          color: #334155;
+          color: #cbd5e1;
           margin: 0 0 0.3rem 0;
         }
 
-        .philosophy-micro-tags {
+        .perspective-micro-tags {
           display: flex;
           align-items: center;
           gap: 0.3rem;
           font-family: var(--font-mono);
           font-size: 0.56rem;
           font-weight: 700;
-          color: #4f46e5;
+          color: #c084fc;
           flex-wrap: wrap;
         }
 
         .micro-tag {
-          background: rgba(79, 70, 229, 0.08);
+          background: rgba(139, 92, 246, 0.12);
+          border: 1px solid rgba(139, 92, 246, 0.22);
           padding: 0.08rem 0.32rem;
           border-radius: 3px;
         }
 
         .micro-arrow {
-          color: #94a3b8;
+          color: #64748b;
           font-size: 0.62rem;
         }
 
@@ -1508,7 +1520,7 @@ export default function ExperienceSection() {
           .exp-nav-card {
             flex: 0 0 220px;
           }
-          .nav-progression-connector {
+          .nav-progression-marker {
             display: none;
           }
           .experience-showcase-section {
@@ -1533,6 +1545,9 @@ export default function ExperienceSection() {
           }
           .dominant-card-header {
             flex-direction: column;
+          }
+          .dominant-details-grid {
+            grid-template-columns: repeat(2, 1fr);
           }
         }
 
