@@ -3,7 +3,6 @@ import Sidebar from './components/Sidebar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import ProjectsSection from './components/ProjectsSection';
-import ApproachSection from './components/ApproachSection';
 import ExperienceSection from './components/ExperienceSection';
 import PlaygroundSection from './components/PlaygroundSection';
 import NotesSection from './components/NotesSection';
@@ -14,23 +13,30 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'approach', 'experience', 'playground', 'notes', 'contact'];
-      const scrollPosition = window.scrollY + 200;
+      // If at or near bottom of document, activate contact section
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80) {
+        setActiveSection('contact');
+        return;
+      }
+
+      const sections = ['home', 'about', 'projects', 'experience', 'playground', 'notes', 'contact'];
+      let currentSection = 'home';
 
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(sectionId);
-            break;
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 200) {
+            currentSection = sectionId;
           }
         }
       }
+
+      setActiveSection(currentSection);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -51,11 +57,10 @@ export default function App() {
       <main className="main-content">
         <HeroSection 
           onExploreWork={() => scrollToSection('projects')} 
-          onViewApproach={() => scrollToSection('approach')} 
+          onViewApproach={() => scrollToSection('about')} 
         />
         <AboutSection />
         <ProjectsSection />
-        <ApproachSection />
         <ExperienceSection />
         <PlaygroundSection />
         <NotesSection />

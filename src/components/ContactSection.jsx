@@ -25,7 +25,7 @@ export default function ContactSection() {
   const [sentSuccess, setSentSuccess] = useState(false);
 
   const copyEmail = () => {
-    navigator.clipboard.writeText('hello@satviksomvanshi.com');
+    navigator.clipboard.writeText('[Email Address]');
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
@@ -47,9 +47,9 @@ export default function ContactSection() {
       <section id="contact" className="portfolio-section contact-section grid-background">
         <div className="contact-top-bar">
           <div className="section-header-tag">
-            <span>09. CONTACT (FOOTER)</span>
+            <span>07. CONTACT</span>
           </div>
-          <span className="contact-slogan">LET'S CONNECT • BUILD IMPROVE REPEAT</span>
+          <span className="contact-slogan">LET'S CONNECT • BUILD • TEST • CONNECT</span>
         </div>
 
         <div className="contact-grid">
@@ -61,18 +61,18 @@ export default function ContactSection() {
               viewport={{ once: true }}
               className="contact-title"
             >
-              Have a problem<br />
-              to solve?
+              Have something<br />
+              worth building?
             </motion.h2>
 
             <p className="contact-subtitle">
-              Open to opportunities, collaborations and interesting conversations.
+              Whether it's a product idea, a technical problem, a quality challenge, or simply an interesting conversation — I'd be happy to connect.
             </p>
 
             {/* Action Buttons */}
             <div className="contact-actions">
               <button className="btn-primary" onClick={() => setShowMessageModal(true)}>
-                <span>Send a message</span>
+                <span>Let's talk →</span>
                 <Send size={14} />
               </button>
 
@@ -83,10 +83,10 @@ export default function ContactSection() {
 
             {/* Quick Contact Links Box */}
             <div className="contact-links-box glass-panel">
-              <div className="link-row" onClick={copyEmail}>
+              <div className="link-row" onClick={copyEmail} title="Copy email address placeholder">
                 <div className="link-left">
                   <Mail size={16} className="link-icon" />
-                  <span>hello@satviksomvanshi.com</span>
+                  <span>[Email Address]</span>
                 </div>
                 <button className="copy-btn">
                   {copiedEmail ? <Check size={14} color="#10b981" /> : <Copy size={14} />}
@@ -94,27 +94,25 @@ export default function ContactSection() {
               </div>
 
               <a 
-                href="https://linkedin.com/in/satviksomvanshi" 
-                target="_blank" 
-                rel="noreferrer"
+                href="#contact" 
                 className="link-row"
+                onClick={(e) => { e.preventDefault(); alert('LinkedIn profile: [LinkedIn URL]'); }}
               >
                 <div className="link-left">
                   <LinkedinIcon size={16} className="link-icon" />
-                  <span>linkedin.com/in/satviksomvanshi</span>
+                  <span>[LinkedIn URL]</span>
                 </div>
                 <ExternalLink size={14} className="ext-icon" />
               </a>
 
               <a 
-                href="https://github.com/satvik-somvanshi" 
-                target="_blank" 
-                rel="noreferrer"
+                href="#contact" 
                 className="link-row"
+                onClick={(e) => { e.preventDefault(); alert('GitHub profile: [GitHub URL]'); }}
               >
                 <div className="link-left">
                   <GithubIcon size={16} className="link-icon" />
-                  <span>github.com/satvik-somvanshi</span>
+                  <span>[GitHub URL]</span>
                 </div>
                 <ExternalLink size={14} className="ext-icon" />
               </a>
@@ -133,7 +131,7 @@ export default function ContactSection() {
               <div className="grain-streak-gradient" />
 
               <div className="handwriting-badge streak-tag">
-                <span className="handwriting">Different problems.<br />Same curiosity.</span>
+                <span className="handwriting">Same curiosity.<br />Different lenses.<br />More connected solutions.</span>
               </div>
             </div>
           </motion.div>
@@ -141,7 +139,7 @@ export default function ContactSection() {
 
         {/* Footer Copyright Strip */}
         <div className="contact-copyright-footer">
-          <span>© 2024 Satvik Somvanshi. Built with curiosity.</span>
+          <span>© 2026 Satvik Somvanshi. Same curiosity. Different lenses. More connected solutions.</span>
         </div>
       </section>
 
@@ -174,7 +172,7 @@ export default function ContactSection() {
                     <input 
                       type="text" 
                       required 
-                      placeholder="e.g. Alex Vance" 
+                      placeholder="Your Name" 
                       value={formData.name}
                       onChange={e => setFormData({ ...formData, name: e.target.value })}
                     />
@@ -185,7 +183,7 @@ export default function ContactSection() {
                     <input 
                       type="email" 
                       required 
-                      placeholder="alex@company.com" 
+                      placeholder="Your Email Address" 
                       value={formData.email}
                       onChange={e => setFormData({ ...formData, email: e.target.value })}
                     />
@@ -232,23 +230,28 @@ export default function ContactSection() {
               <div className="resume-preview-doc">
                 <div className="resume-head">
                   <h2>Satvik Somvanshi</h2>
-                  <p>Quality Engineer & Product Builder | hello@satviksomvanshi.com</p>
+                  <p>Engineer · Tester · Builder | [Email Address]</p>
                 </div>
 
                 <div className="resume-section-block">
                   <h4>Core Competencies</h4>
-                  <p>Quality Engineering, Test Automation Architecture, Frontend Development, System Design, CI/CD Pipelines, Product Engineering.</p>
+                  <p>Manual Testing, Test Case Design, Defect Tracking, WMS Workflow Testing, Product Thinking, UI Prototyping, Wireframing, Full Stack MERN Development, C++/OpenGL, Python/Django, PHP/MySQL, AWS Lambda.</p>
                 </div>
 
                 <div className="resume-section-block">
                   <h4>Experience Summary</h4>
-                  <p>5+ years building and verifying high-availability digital products, leading automation suites, and driving dev-to-QA velocity.</p>
+                  <p>QA Engineering Intern at StackPro Technologies Pvt Ltd (WMS workflows, manual testing, edge cases, ClickUp) & Software Engineer Intern at Amatres Technologies (AMAHealth, AWS Lambda, CloudWatch, MSG91).</p>
+                </div>
+
+                <div className="resume-section-block">
+                  <h4>Education</h4>
+                  <p>Bachelor of Technology — SJB Institute of Technology (SJBIT), Bengaluru (Affiliated with VTU).</p>
                 </div>
               </div>
 
               <div className="modal-footer" style={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }}>
-                <button className="btn-primary" onClick={() => alert('Downloading Satvik_Somvanshi_Resume.pdf...')}>
-                  <span>Download PDF</span>
+                <button className="btn-primary" onClick={() => alert('Resume PDF placeholder: [Resume URL]')}>
+                  <span>Download Resume</span>
                   <Download size={14} />
                 </button>
               </div>
@@ -260,19 +263,29 @@ export default function ContactSection() {
       <style>{`
         .contact-section {
           background-color: #f7f6f2;
-          padding-bottom: 2rem;
+          min-height: 100svh;
+          height: 100dvh;
+          max-height: 100dvh;
+          width: 100%;
+          overflow: hidden;
+          box-sizing: border-box;
+          padding: clamp(1rem, 2.5vh, 2rem) clamp(1.5rem, 3.2vw, 3.5rem);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
 
         .contact-top-bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 2rem;
+          margin-bottom: clamp(0.3rem, 1vh, 0.8rem);
+          flex-shrink: 0;
         }
 
         .contact-slogan {
           font-family: var(--font-mono);
-          font-size: 0.65rem;
+          font-size: clamp(0.6rem, 0.8vh, 0.65rem);
           font-weight: 700;
           letter-spacing: 0.12em;
           color: #94a3b8;
@@ -281,38 +294,39 @@ export default function ContactSection() {
         .contact-grid {
           display: grid;
           grid-template-columns: 1.3fr 1fr;
-          gap: 3.5rem;
+          gap: clamp(1.5rem, 3vw, 3.5rem);
           align-items: center;
-          margin-bottom: 3.5rem;
+          margin-bottom: 0;
+          flex: 1;
         }
 
         .contact-title {
           font-family: var(--font-display);
-          font-size: 3.6rem;
+          font-size: clamp(1.8rem, 2.4vw + 1.2vh, 3rem);
           font-weight: 800;
           line-height: 1.1;
           letter-spacing: -0.02em;
           color: #0f172a;
-          margin-bottom: 1rem;
+          margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
         }
 
         .contact-subtitle {
-          font-size: 1.05rem;
+          font-size: clamp(0.78rem, 1vh, 0.88rem);
           color: #64748b;
           max-width: 500px;
-          margin-bottom: 2rem;
-          line-height: 1.5;
+          margin-bottom: clamp(0.6rem, 1.4vh, 1.2rem);
+          line-height: 1.45;
         }
 
         .contact-actions {
           display: flex;
-          gap: 1rem;
-          margin-bottom: 2.5rem;
+          gap: 0.8rem;
+          margin-bottom: clamp(0.6rem, 1.4vh, 1.2rem);
         }
 
         .contact-links-box {
-          border-radius: 20px;
-          padding: 0.5rem;
+          border-radius: 16px;
+          padding: 0.3rem;
           display: flex;
           flex-direction: column;
           max-width: 480px;
@@ -322,8 +336,8 @@ export default function ContactSection() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0.8rem 1.2rem;
-          border-radius: 12px;
+          padding: clamp(0.4rem, 0.8vh, 0.65rem) clamp(0.7rem, 1.2vw, 1rem);
+          border-radius: 10px;
           cursor: pointer;
           transition: background 0.2s ease;
           text-decoration: none;
@@ -339,7 +353,7 @@ export default function ContactSection() {
           align-items: center;
           gap: 0.8rem;
           font-family: var(--font-mono);
-          font-size: 0.85rem;
+          font-size: clamp(0.75rem, 0.95vh, 0.82rem);
           font-weight: 600;
           color: #0f172a;
         }
@@ -359,7 +373,7 @@ export default function ContactSection() {
         .grain-art-container {
           position: relative;
           width: 100%;
-          height: 380px;
+          height: clamp(200px, 30vh, 320px);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -477,6 +491,36 @@ export default function ContactSection() {
         @media (max-width: 1024px) {
           .contact-grid {
             grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .contact-section {
+            padding: clamp(1rem, 2vh, 1.5rem) 1.2rem;
+            overflow-y: auto;
+          }
+          .contact-title {
+            font-size: clamp(1.6rem, 5vw, 2.2rem);
+            word-break: break-word;
+          }
+          .grain-art-container {
+            display: none;
+          }
+          .contact-left {
+            width: 100%;
+            max-width: 100%;
+          }
+          .contact-actions {
+            flex-direction: row;
+            gap: 0.5rem;
+            width: 100%;
+          }
+          .contact-actions .btn-primary,
+          .contact-actions .btn-secondary {
+            flex: 1;
+            padding: 0.6rem 0.6rem;
+            font-size: 0.78rem;
+            justify-content: center;
           }
         }
       `}</style>

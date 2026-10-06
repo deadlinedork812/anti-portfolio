@@ -2,52 +2,49 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, BookOpen, Clock, X } from 'lucide-react';
 
-const articles = [
+const noteCards = [
   {
-    id: 'art1',
+    id: 'note1',
     num: '01',
-    title: 'Testing beyond the happy path',
-    subtitle: 'Why edge cases matter more than we think.',
-    readTime: '10 min read',
-    content: `When building software, the "happy path" is where feature demos succeed. But real-world users click buttons twice, drop connections mid-transaction, and input unexpected unicode characters.\n\nDesigning tests to aggressively explore edge cases, concurrency races, and boundary conditions is what transforms fragile prototypes into resilient, enterprise-ready digital products.`
+    title: 'Testing Beyond the Happy Path',
+    topic: 'Quality & Edge Case Thinking',
+    status: '[Forthcoming]'
   },
   {
-    id: 'art2',
+    id: 'note2',
     num: '02',
-    title: 'Designing for testability',
-    subtitle: 'Small decisions that make a big difference.',
-    readTime: '8 min read',
-    content: `Testability isn't something you slap on after a codebase is finished; it's an architectural property.\n\nBy decoupling business logic from side-effecting external services, injecting dependencies clean, and exposing deterministic state hooks, you can eliminate flaky test suites and empower team velocity.`
+    title: 'Bridging Engineering & Product',
+    topic: 'Product Development & Usability',
+    status: '[Forthcoming]'
   },
   {
-    id: 'art3',
+    id: 'note3',
     num: '03',
-    title: 'From manual to meaningful automation',
-    subtitle: "What I've learned along the way.",
-    readTime: '10 min read',
-    content: `Automating for the sake of metric vanity leads to brittle scripts that fail on harmless visual changes. Meaningful test automation targets critical user journeys, asserts contract boundaries, and delivers instant, actionable feedback in CI/CD pipelines.`
+    title: 'Operational Reality & Complex Workflows',
+    topic: 'WMS Validation & Systems',
+    status: '[Forthcoming]'
   }
 ];
 
 export default function NotesSection() {
-  const [activeArticle, setActiveArticle] = useState(null);
+  const [activeNote, setActiveNote] = useState(null);
 
   return (
     <>
       <section id="notes" className="portfolio-section section-dark notes-section grid-background-dark">
         <div className="notes-top-bar">
           <div className="section-header-tag">
-            <span>08. NOTES / BLOG</span>
+            <span>06. NOTES</span>
           </div>
           <div className="notes-slogan">
             <span>THOUGHTS</span>
             <span className="dot">•</span>
-            <span>NOTES IDEAS OBSERVATIONS</span>
+            <span>OBSERVATIONS • DISPATCHES</span>
           </div>
         </div>
 
         <div className="notes-grid">
-          {/* Left Column: Articles */}
+          {/* Left Column: Notes List */}
           <div className="notes-left">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
@@ -56,31 +53,31 @@ export default function NotesSection() {
               className="notes-title"
             >
               Notes from<br />
-              the journey.
+              the build.
             </motion.h2>
 
             <p className="notes-subtitle">
-              Lessons, observations and ideas on quality, engineering, design and product.
+              Short observations from engineering, testing, product design, and the process of turning ideas into working systems.
             </p>
 
             <div className="articles-list">
-              {articles.map((art) => (
+              {noteCards.map((note) => (
                 <motion.div 
-                  key={art.id}
+                  key={note.id}
                   whileHover={{ x: 6 }}
                   className="article-row glass-panel-dark"
-                  onClick={() => setActiveArticle(art)}
+                  onClick={() => setActiveNote(note)}
                 >
                   <div className="article-left">
-                    <span className="article-num">{art.num}</span>
+                    <span className="article-num">{note.num}</span>
                     <div className="article-text-block">
-                      <h3 className="article-title">{art.title}</h3>
-                      <span className="article-sub">{art.subtitle}</span>
+                      <h3 className="article-title">{note.title}</h3>
+                      <span className="article-sub">{note.topic}</span>
                     </div>
                   </div>
 
                   <div className="article-right">
-                    <span className="read-time">{art.readTime}</span>
+                    <span className="read-time">{note.status}</span>
                     <ArrowRight size={16} className="article-arrow" />
                   </div>
                 </motion.div>
@@ -110,17 +107,17 @@ export default function NotesSection() {
               </svg>
 
               <div className="handwriting-note-bubble">
-                <span className="handwriting-light">"Better questions create better products."</span>
+                <span className="handwriting-light">"Same curiosity. Different lenses."</span>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Article Drawer Preview Modal */}
+      {/* Note Preview Modal */}
       <AnimatePresence>
-        {activeArticle && (
-          <div className="case-study-overlay" onClick={() => setActiveArticle(null)}>
+        {activeNote && (
+          <div className="case-study-overlay" onClick={() => setActiveNote(null)}>
             <motion.div 
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -130,21 +127,20 @@ export default function NotesSection() {
             >
               <div className="drawer-header">
                 <div className="drawer-meta">
-                  <span className="article-num">{activeArticle.num}</span>
-                  <span className="read-time"><Clock size={12} /> {activeArticle.readTime}</span>
+                  <span className="article-num">{activeNote.num}</span>
+                  <span className="read-time"><Clock size={12} /> {activeNote.status}</span>
                 </div>
-                <button className="modal-close-btn" onClick={() => setActiveArticle(null)}><X size={20} /></button>
+                <button className="modal-close-btn" onClick={() => setActiveNote(null)}><X size={20} /></button>
               </div>
 
-              <h2 className="drawer-title">{activeArticle.title}</h2>
-              <p className="drawer-sub">{activeArticle.subtitle}</p>
+              <h2 className="drawer-title">{activeNote.title}</h2>
+              <p className="drawer-sub">{activeNote.topic}</p>
 
               <div className="drawer-divider" />
 
               <div className="drawer-body">
-                {activeArticle.content.split('\n\n').map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
-                ))}
+                <p>This note card is reserved for future field observations and engineering reflections from ongoing builds, tests, and product iterations.</p>
+                <p style={{ marginTop: '1rem', color: '#94a3b8' }}>Full text dispatches will be published here as they are written.</p>
               </div>
             </motion.div>
           </div>
@@ -155,18 +151,29 @@ export default function NotesSection() {
         .notes-section {
           background-color: #0d0f19;
           position: relative;
+          min-height: 100svh;
+          height: 100dvh;
+          max-height: 100dvh;
+          width: 100%;
+          overflow: hidden;
+          box-sizing: border-box;
+          padding: clamp(1rem, 2.5vh, 2rem) clamp(1.5rem, 3.2vw, 3.5rem);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
 
         .notes-top-bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 2rem;
+          margin-bottom: clamp(0.3rem, 1vh, 0.8rem);
+          flex-shrink: 0;
         }
 
         .notes-slogan {
           font-family: var(--font-mono);
-          font-size: 0.65rem;
+          font-size: clamp(0.6rem, 0.8vh, 0.65rem);
           letter-spacing: 0.12em;
           color: #64748b;
           display: flex;
@@ -177,40 +184,41 @@ export default function NotesSection() {
         .notes-grid {
           display: grid;
           grid-template-columns: 1.3fr 1fr;
-          gap: 3.5rem;
+          gap: clamp(1.5rem, 3vw, 3.5rem);
           align-items: center;
+          flex: 1;
         }
 
         .notes-title {
           font-family: var(--font-display);
-          font-size: 3.2rem;
+          font-size: clamp(1.8rem, 2.4vw + 1vh, 2.8rem);
           font-weight: 800;
           line-height: 1.1;
           letter-spacing: -0.02em;
           color: #f8fafc;
-          margin-bottom: 1rem;
+          margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
         }
 
         .notes-subtitle {
-          font-size: 1.02rem;
+          font-size: clamp(0.78rem, 1vh, 0.88rem);
           color: #94a3b8;
           max-width: 520px;
-          margin-bottom: 2.5rem;
-          line-height: 1.5;
+          margin-bottom: clamp(0.6rem, 1.4vh, 1.2rem);
+          line-height: 1.45;
         }
 
         .articles-list {
           display: flex;
           flex-direction: column;
-          gap: 1rem;
+          gap: clamp(0.4rem, 0.8vh, 0.75rem);
         }
 
         .article-row {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 1.5rem 1.8rem;
-          border-radius: 16px;
+          padding: clamp(0.6rem, 1vh, 1rem) clamp(0.8rem, 1.2vw, 1.4rem);
+          border-radius: 12px;
           cursor: pointer;
           transition: all 0.2s ease;
         }
@@ -218,66 +226,58 @@ export default function NotesSection() {
         .article-left {
           display: flex;
           align-items: center;
-          gap: 1.5rem;
+          gap: clamp(0.8rem, 1.5vw, 1.4rem);
         }
 
         .article-num {
           font-family: var(--font-mono);
+          font-size: clamp(0.72rem, 0.95vh, 0.82rem);
           font-weight: 800;
-          font-size: 1.1rem;
-          color: #818cf8;
+          color: #6366f1;
         }
 
         .article-text-block {
           display: flex;
           flex-direction: column;
-          gap: 0.2rem;
+          gap: 0.15rem;
         }
 
         .article-title {
           font-family: var(--font-display);
-          font-size: 1.25rem;
-          font-weight: 800;
+          font-size: clamp(0.85rem, 1.1vh, 1rem);
+          font-weight: 700;
           color: #f8fafc;
         }
 
         .article-sub {
-          font-size: 0.85rem;
-          color: #64748b;
+          font-family: var(--font-sans);
+          font-size: clamp(0.68rem, 0.85vh, 0.75rem);
+          color: #94a3b8;
         }
 
         .article-right {
           display: flex;
           align-items: center;
-          gap: 1rem;
+          gap: 0.8rem;
         }
 
         .read-time {
           font-family: var(--font-mono);
-          font-size: 0.75rem;
-          color: #94a3b8;
-          display: flex;
-          align-items: center;
-          gap: 0.3rem;
+          font-size: clamp(0.62rem, 0.8vh, 0.7rem);
+          color: #64748b;
         }
 
-        .article-arrow {
-          color: #818cf8;
-        }
-
-        /* Right Mountain Visual */
         .mountain-art-container {
           position: relative;
           width: 100%;
-          height: 380px;
+          height: clamp(200px, 30vh, 320px);
           display: flex;
           align-items: center;
           justify-content: center;
         }
-
         .mountain-svg {
-          width: 260px;
-          height: 260px;
+          width: clamp(200px, 28vh, 260px);
+          height: clamp(200px, 28vh, 260px);
         }
 
         .handwriting-note-bubble {
@@ -348,6 +348,16 @@ export default function NotesSection() {
         @media (max-width: 1024px) {
           .notes-grid {
             grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .notes-title {
+            font-size: 2.2rem;
+            word-break: break-word;
+          }
+          .article-row {
+            padding: 1.2rem 1rem;
           }
         }
       `}</style>

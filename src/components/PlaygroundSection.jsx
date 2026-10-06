@@ -2,68 +2,60 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Sparkles, Box, Terminal, Layers, Plus } from 'lucide-react';
 
-const experimentCategories = ['All', 'AI', 'Automation', 'UI Experiments', 'Tools'];
-
-const experiments = [
+const explorations = [
   {
     id: 'exp1',
     num: '01',
-    title: 'AI Test Generator',
-    category: 'AI',
-    desc: 'Experimenting with LLMs for automatic test case generation from user user stories.',
-    tech: ['GPT-4', 'Python', 'Playwright'],
-    icon: Sparkles
+    title: 'Interface Ideas & Interactions',
+    desc: 'Exploring fluid interactive gestures, micro-interactions, responsive states, and human-centric design patterns.',
+    tech: ['UI / UX', 'Prototyping', 'Design Systems'],
+    status: '[Upcoming Exploration]',
+    icon: Layers
   },
   {
     id: 'exp2',
     num: '02',
-    title: 'API Testing Toolkit',
-    category: 'Automation',
-    desc: 'A small toolkit for faster API test development and automated mock schema validation.',
-    tech: ['Node.js', 'Postman', 'Jest'],
+    title: 'Testing Workflows & Edge Cases',
+    desc: 'Exploring multi-step operational journeys, edge-case failure modes, and systematic manual verification techniques.',
+    tech: ['Manual Testing', 'Edge Cases', 'Workflows'],
+    status: '[Upcoming Exploration]',
     icon: Terminal
   },
   {
     id: 'exp3',
     num: '03',
-    title: 'UI Motion Studies',
-    category: 'UI Experiments',
-    desc: 'Exploring fluid interactive gestures, micro-animations, and glassmorphic spatial design.',
-    tech: ['Framer Motion', 'React', 'Three.js'],
-    icon: Layers
+    title: 'Technical Concepts & Sandbox',
+    desc: 'Exploring software behavior, state machines, lightweight utilities, and real-world system resilience.',
+    tech: ['Systems', 'State Logic', 'Architecture'],
+    status: '[Upcoming Exploration]',
+    icon: Box
   },
   {
     id: 'exp4',
     num: '04',
-    title: 'More experiments',
-    category: 'Tools',
-    desc: 'Exploring state machine testing, chaos engineering tools, and visual diff algorithms.',
-    tech: ['WIP', 'Lab'],
-    icon: Plus,
-    isUpcoming: true
+    title: 'Small Things & Experiments',
+    desc: 'A dedicated scratchpad for mini-tools, small interface components, and exploratory concepts.',
+    tech: ['WIP', 'Lab', 'Exploration'],
+    status: '[Future Sandbox]',
+    icon: Plus
   }
 ];
 
 export default function PlaygroundSection() {
-  const [activeFilter, setActiveFilter] = useState('All');
   const [selectedExp, setSelectedExp] = useState(null);
-
-  const filteredExperiments = activeFilter === 'All'
-    ? experiments
-    : experiments.filter(e => e.category === activeFilter);
 
   return (
     <>
       <section id="playground" className="portfolio-section playground-section grid-background">
         <div className="pg-top-bar">
           <div className="section-header-tag">
-            <span>07. PLAYGROUND</span>
+            <span>05. PLAYGROUND</span>
           </div>
-          <span className="pg-slogan">PLAY LEARN BUILD REPEAT</span>
+          <span className="pg-slogan">PLAY • LEARN • BUILD • REPEAT</span>
         </div>
 
         <div className="pg-grid">
-          {/* Left Side: Text, Filters, Cards */}
+          {/* Left Side: Text and Exploration Cards */}
           <div className="pg-left">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
@@ -71,30 +63,17 @@ export default function PlaygroundSection() {
               viewport={{ once: true }}
               className="pg-title"
             >
-              A space to<br />
-              explore freely.
+              Things I'm<br />
+              exploring.
             </motion.h2>
 
             <p className="pg-subtitle">
-              Small experiments, side projects and ideas I'm exploring — because curiosity often leads to the next opportunity.
+              A space for experiments, interface ideas, technical explorations, testing concepts, and small things that don't belong inside a conventional project case study.
             </p>
-
-            {/* Filter Pills */}
-            <div className="filter-pills pg-filters">
-              {experimentCategories.map((cat) => (
-                <button
-                  key={cat}
-                  className={`filter-btn ${activeFilter === cat ? 'active' : ''}`}
-                  onClick={() => setActiveFilter(cat)}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
 
             {/* Cards Grid */}
             <div className="experiments-grid">
-              {filteredExperiments.map((exp) => {
+              {explorations.map((exp) => {
                 const Icon = exp.icon;
                 return (
                   <motion.div 
@@ -105,7 +84,7 @@ export default function PlaygroundSection() {
                   >
                     <div className="exp-card-header">
                       <span className="exp-card-num">{exp.num}</span>
-                      <Icon size={16} className="exp-icon" />
+                      <span className="exp-status-pill">{exp.status}</span>
                     </div>
 
                     <h3 className="exp-card-title">{exp.title}</h3>
@@ -117,7 +96,7 @@ export default function PlaygroundSection() {
                           <span key={t} className="tag-pill">{t}</span>
                         ))}
                       </div>
-                      <ArrowRight size={16} className="exp-arrow" />
+                      <ArrowRight size={15} className="exp-arrow" />
                     </div>
                   </motion.div>
                 );
@@ -156,7 +135,7 @@ export default function PlaygroundSection() {
         </div>
       </section>
 
-      {/* Experiment Details Modal */}
+      {/* Exploration Details Modal */}
       <AnimatePresence>
         {selectedExp && (
           <div className="case-study-overlay" onClick={() => setSelectedExp(null)}>
@@ -169,11 +148,11 @@ export default function PlaygroundSection() {
             >
               <div className="exp-modal-header">
                 <span className="exp-card-num">{selectedExp.num}</span>
-                <h3 className="modal-headline" style={{ color: '#fff' }}>{selectedExp.title}</h3>
+                <h3 className="modal-headline" style={{ color: '#fff', fontSize: '1.4rem' }}>{selectedExp.title}</h3>
                 <button className="modal-close-btn" onClick={() => setSelectedExp(null)}>✕</button>
               </div>
 
-              <p className="exp-card-desc" style={{ color: '#cbd5e1', fontSize: '1rem', margin: '1rem 0' }}>
+              <p className="exp-card-desc" style={{ color: '#cbd5e1', fontSize: '0.95rem', margin: '1rem 0' }}>
                 {selectedExp.desc}
               </p>
 
@@ -184,9 +163,9 @@ export default function PlaygroundSection() {
               </div>
 
               <div className="exp-demo-box">
-                <p>Interactive demonstration prototype running in simulated environment.</p>
-                <button className="btn-primary" onClick={() => alert('Launching demo environment...')}>
-                  Run Live Sandbox
+                <p>This exploratory topic is part of my ongoing learning space. Future write-ups and interactive sandboxes will be linked here.</p>
+                <button className="btn-secondary" style={{ color: '#ffffff', borderColor: 'rgba(255,255,255,0.3)' }} onClick={() => setSelectedExp(null)}>
+                  Close
                 </button>
               </div>
             </motion.div>
@@ -197,18 +176,29 @@ export default function PlaygroundSection() {
       <style>{`
         .playground-section {
           background-color: #f6f5f0;
+          min-height: 100svh;
+          height: 100dvh;
+          max-height: 100dvh;
+          width: 100%;
+          overflow: hidden;
+          box-sizing: border-box;
+          padding: clamp(1rem, 2.5vh, 2rem) clamp(1.5rem, 3.2vw, 3.5rem);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
 
         .pg-top-bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 2rem;
+          margin-bottom: clamp(0.3rem, 1vh, 0.8rem);
+          flex-shrink: 0;
         }
 
         .pg-slogan {
           font-family: var(--font-mono);
-          font-size: 0.65rem;
+          font-size: clamp(0.6rem, 0.8vh, 0.68rem);
           font-weight: 700;
           letter-spacing: 0.12em;
           color: #94a3b8;
@@ -217,45 +207,42 @@ export default function PlaygroundSection() {
         .pg-grid {
           display: grid;
           grid-template-columns: 1.3fr 1fr;
-          gap: 3rem;
+          gap: clamp(1.5rem, 3vw, 3.5rem);
           align-items: center;
+          flex: 1;
         }
 
         .pg-title {
           font-family: var(--font-display);
-          font-size: 3.2rem;
+          font-size: clamp(1.8rem, 2.4vw + 1vh, 2.8rem);
           font-weight: 800;
           line-height: 1.1;
           letter-spacing: -0.02em;
           color: #0f172a;
-          margin-bottom: 1rem;
+          margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
         }
 
         .pg-subtitle {
-          font-size: 1.02rem;
+          font-size: clamp(0.78rem, 1vh, 0.88rem);
           color: #64748b;
           max-width: 520px;
-          margin-bottom: 2rem;
-          line-height: 1.5;
-        }
-
-        .pg-filters {
-          margin-bottom: 2rem;
+          margin-bottom: clamp(0.6rem, 1.4vh, 1.2rem);
+          line-height: 1.45;
         }
 
         .experiments-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 1.2rem;
+          gap: clamp(0.45rem, 0.9vh, 0.85rem);
         }
 
         .exp-card {
-          padding: 1.5rem;
-          border-radius: 20px;
+          padding: clamp(0.6rem, 1vh, 1rem);
+          border-radius: 14px;
           cursor: pointer;
           display: flex;
           flex-direction: column;
-          gap: 0.6rem;
+          gap: clamp(0.2rem, 0.5vh, 0.4rem);
         }
 
         .exp-card-header {
@@ -267,49 +254,68 @@ export default function PlaygroundSection() {
         .exp-card-num {
           font-family: var(--font-mono);
           font-weight: 800;
-          font-size: 0.9rem;
+          font-size: clamp(0.72rem, 0.9vh, 0.82rem);
           color: #6366f1;
         }
 
-        .exp-icon {
-          color: #8b5cf6;
+        .exp-status-pill {
+          font-family: var(--font-mono);
+          font-size: clamp(0.58rem, 0.75vh, 0.64rem);
+          font-weight: 600;
+          color: #4f46e5;
+          background: rgba(99, 102, 241, 0.08);
+          border: 1px solid rgba(99, 102, 241, 0.2);
+          border-radius: 9999px;
+          padding: 0.12rem 0.45rem;
         }
 
         .exp-card-title {
           font-family: var(--font-display);
-          font-size: 1.25rem;
+          font-size: clamp(0.85rem, 1.1vh, 1rem);
           font-weight: 800;
           color: #0f172a;
+          line-height: 1.2;
         }
 
         .exp-card-desc {
-          font-size: 0.85rem;
+          font-size: clamp(0.68rem, 0.85vh, 0.75rem);
           color: #64748b;
-          line-height: 1.4;
+          line-height: 1.35;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
 
         .exp-card-footer {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-top: 0.5rem;
+          margin-top: clamp(0.2rem, 0.4vh, 0.4rem);
         }
 
         .exp-tech-tags {
           display: flex;
-          gap: 0.3rem;
+          gap: 0.25rem;
           flex-wrap: wrap;
+        }
+
+        .exp-tech-tags .tag-pill {
+          font-size: clamp(0.58rem, 0.72vh, 0.65rem);
+          padding: 0.12rem 0.45rem;
         }
 
         .exp-arrow {
           color: #0f172a;
+          width: 14px;
+          height: 14px;
         }
 
         /* 3D Prism Visual */
         .prism-art-container {
           position: relative;
           width: 100%;
-          height: 380px;
+          height: clamp(200px, 30vh, 320px);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -317,32 +323,32 @@ export default function PlaygroundSection() {
         }
 
         .glass-cube {
-          width: 140px;
-          height: 140px;
+          width: 110px;
+          height: 110px;
           position: relative;
           transform-style: preserve-3d;
         }
 
         .cube-face {
           position: absolute;
-          width: 140px;
-          height: 140px;
+          width: 110px;
+          height: 110px;
           background: rgba(99, 102, 241, 0.15);
           border: 1px solid rgba(236, 72, 153, 0.5);
           backdrop-filter: blur(8px);
           box-shadow: inset 0 0 20px rgba(99, 102, 241, 0.3);
         }
 
-        .face-front  { transform: rotateY(  0deg) translateZ(70px); }
-        .face-back   { transform: rotateY(180deg) translateZ(70px); }
-        .face-right  { transform: rotateY( 90deg) translateZ(70px); }
-        .face-left   { transform: rotateY(-90deg) translateZ(70px); }
-        .face-top    { transform: rotateX( 90deg) translateZ(70px); }
-        .face-bottom { transform: rotateX(-90deg) translateZ(70px); }
+        .face-front  { transform: rotateY(  0deg) translateZ(55px); }
+        .face-back   { transform: rotateY(180deg) translateZ(55px); }
+        .face-right  { transform: rotateY( 90deg) translateZ(55px); }
+        .face-left   { transform: rotateY(-90deg) translateZ(55px); }
+        .face-top    { transform: rotateX( 90deg) translateZ(55px); }
+        .face-bottom { transform: rotateX(-90deg) translateZ(55px); }
 
         .prism-tag {
           position: absolute;
-          bottom: 20px;
+          bottom: 10px;
           right: 10px;
           transform: rotate(-3deg);
         }
@@ -374,12 +380,32 @@ export default function PlaygroundSection() {
           color: #94a3b8;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 820px) {
+          .playground-section {
+            overflow-y: auto;
+          }
           .pg-grid {
             grid-template-columns: 1fr;
+            gap: 1.5rem;
           }
           .experiments-grid {
             grid-template-columns: 1fr;
+          }
+          .prism-art-container {
+            display: none;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .playground-section {
+            padding: 1.25rem 1rem;
+          }
+          .pg-title {
+            font-size: 2rem;
+            word-break: break-word;
+          }
+          .exp-card {
+            padding: 0.9rem;
           }
         }
       `}</style>

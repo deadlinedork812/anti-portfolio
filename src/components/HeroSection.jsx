@@ -47,7 +47,7 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              HELLO, I'M SATVIK
+              SATVIK SOMVANSHI · ENGINEER · TESTER · BUILDER
             </motion.div>
 
             {/* Main Headline */}
@@ -70,9 +70,9 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.18 }}
             >
-              I work across engineering, quality, and systems —<br />
+              I work across engineering, quality, and product —<br />
               turning complex ideas into reliable, human-centric<br />
-              products that create real impact.
+              software that creates real impact.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -103,7 +103,7 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
               </div>
               <div className="ce-tags">
                 <span className="ce-tag ce-tag-light">Testing at Scale</span>
-                <span className="ce-tag ce-tag-coral">Automation</span>
+                <span className="ce-tag ce-tag-coral">Product Thinking</span>
                 <span className="ce-tag ce-tag-blue">System Design</span>
                 <span className="ce-tag ce-tag-plain">Developer Experience</span>
               </div>
@@ -117,23 +117,23 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
               transition={{ duration: 0.5, delay: 0.38 }}
             >
               <div className="stat-item">
-                <span className="stat-num">3+</span>
-                <span className="stat-label">Years Experience</span>
+                <span className="stat-num">Engineering + QA</span>
+                <span className="stat-label">Building and testing real-world software</span>
                 <div className="stat-underline" />
               </div>
               <div className="stat-item">
-                <span className="stat-num">15+</span>
-                <span className="stat-label">Projects &amp; Contributions</span>
+                <span className="stat-num">Product Mindset</span>
+                <span className="stat-label">From requirements to usable experiences</span>
                 <div className="stat-underline" />
               </div>
               <div className="stat-item">
-                <span className="stat-num">End-to-End</span>
-                <span className="stat-label">Product Mindset</span>
+                <span className="stat-num">End-to-End Thinking</span>
+                <span className="stat-label">Engineering, quality and product together</span>
                 <div className="stat-underline" />
               </div>
               <div className="stat-item">
-                <span className="stat-num stat-num-bold">Always</span>
-                <span className="stat-label stat-label-bold">Learning</span>
+                <span className="stat-num stat-num-bold">Always Learning</span>
+                <span className="stat-label stat-label-bold">Exploring better ways to build</span>
                 <div className="stat-underline" />
               </div>
             </motion.div>
@@ -146,15 +146,22 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
             position: relative;
             z-index: 1;
             width: 100%;
-            overflow-x: hidden;
+            min-height: 100svh;
+            height: 100dvh;
+            max-height: 100dvh;
+            overflow: hidden;
+            box-sizing: border-box;
           }
 
           .hero-root {
-            min-height: 100vh;
+            min-height: 100svh;
+            height: 100dvh;
+            max-height: 100dvh;
             width: 100%;
             background: #f5f4ee;
             position: relative;
             overflow: hidden;
+            box-sizing: border-box;
           }
 
           /* ===== DEDICATED FULL-VIEWPORT ATMOSPHERIC BACKGROUND LAYER ===== */
@@ -205,23 +212,27 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
             position: relative;
             z-index: 10;
             width: 100%;
-            min-height: 100vh;
+            height: 100%;
+            min-height: 100svh;
+            max-height: 100dvh;
             display: flex;
             align-items: center;
           }
 
           /* ===== LEFT CONTENT COLUMN (38% Width Layout) ===== */
           .hero-left.hero-content {
-            width: 40%;
+            width: 42%;
             max-width: 580px;
             min-width: 360px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 4.5rem 2.2rem 2.2rem 2.8rem;
+            padding: clamp(1.5rem, 3.5vh, 3.5rem) clamp(1.5rem, 2.5vw, 2.8rem);
             position: relative;
             z-index: 20;
-            min-height: 100vh;
+            height: 100%;
+            min-height: 100svh;
+            max-height: 100dvh;
             box-sizing: border-box;
             background: transparent;
           }
@@ -232,7 +243,7 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
             font-weight: 700;
             letter-spacing: 0.12em;
             color: #4338ca;
-            margin-bottom: 0.4rem;
+            margin-bottom: clamp(0.2rem, 0.5vh, 0.4rem);
           }
 
           .hero-hello {
@@ -241,17 +252,17 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
             font-weight: 600;
             letter-spacing: 0.15em;
             color: #6b7280;
-            margin-bottom: 0.4rem;
+            margin-bottom: clamp(0.2rem, 0.5vh, 0.4rem);
           }
 
           .hero-headline {
             font-family: var(--font-serif), 'Playfair Display', Georgia, serif;
-            font-size: clamp(2.4rem, 3.6vw, 4.1rem);
+            font-size: clamp(2rem, 2.8vw + 1.2vh, 3.8rem);
             font-weight: 700;
             line-height: 1.06;
             letter-spacing: -0.025em;
             color: #0f0f0f;
-            margin-bottom: 1.4rem;
+            margin-bottom: clamp(0.6rem, 1.4vh, 1.3rem);
           }
 
           .survives-italic {
@@ -266,10 +277,10 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
 
           .hero-subtext {
             font-family: var(--font-sans);
-            font-size: 0.92rem;
+            font-size: clamp(0.8rem, 1.1vh, 0.92rem);
             color: #4b5563;
-            line-height: 1.55;
-            margin-bottom: 1.6rem;
+            line-height: 1.5;
+            margin-bottom: clamp(0.7rem, 1.6vh, 1.5rem);
             max-width: 420px;
           }
 
@@ -277,7 +288,7 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
             display: flex;
             align-items: center;
             gap: 0.85rem;
-            margin-bottom: 1.8rem;
+            margin-bottom: clamp(0.7rem, 1.6vh, 1.6rem);
             flex-wrap: wrap;
           }
 
@@ -324,14 +335,14 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
           }
 
           .currently-exploring {
-            margin-bottom: 1.8rem;
+            margin-bottom: clamp(0.7rem, 1.5vh, 1.5rem);
           }
 
           .ce-header {
             display: flex;
             align-items: center;
             gap: 0.4rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: clamp(0.25rem, 0.6vh, 0.45rem);
           }
 
           .ce-dot {
@@ -357,10 +368,10 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
           }
 
           .ce-tag {
-            padding: 0.28rem 0.75rem;
+            padding: 0.22rem 0.65rem;
             border-radius: 20px;
             font-family: var(--font-sans);
-            font-size: 0.72rem;
+            font-size: clamp(0.65rem, 0.9vh, 0.72rem);
             font-weight: 600;
             border: 1.5px solid;
             cursor: default;
@@ -375,7 +386,7 @@ export default function HeroSection({ onExploreWork, onViewApproach }) {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 0;
-            padding-top: 1.1rem;
+            padding-top: clamp(0.5rem, 1.1vh, 1rem);
             border-top: 1px solid rgba(0,0,0,0.1);
           }
 
