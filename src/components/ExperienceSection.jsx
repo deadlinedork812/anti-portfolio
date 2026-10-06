@@ -22,33 +22,33 @@ const experiencesData = [
     idx: '01',
     company: 'StackPro Technologies',
     fullCompany: 'StackPro Technologies Pvt. Ltd.',
-    role: 'Full-Time — QA / Product Engineering',
-    shortRole: 'Full-Time — QA / Product Eng',
+    role: 'Full-Time — Product Engineering & QA',
+    shortRole: 'Full-Time — Product Eng & QA',
     period: 'Present',
     navPeriod: 'PRESENT',
     logo: stackproLogo,
-    badge: 'FULL-TIME · QA & PRODUCT ENG',
+    badge: 'FULL-TIME · PRODUCT ENG & QA',
     badgeType: 'emerald',
     isPromoted: true,
     isProgression: true,
-    progressionRelation: 'Promoted from QA Engineering Intern → Full-Time QA / Product Engineering',
+    progressionRelation: 'Promoted from QA Engineering Intern → Full-Time Product Engineering & QA',
     stageId: 'stage-04',
-    summary: 'Working across QA engineering and product development, with ownership spanning manual testing, product validation, UI prototyping, and release readiness.',
+    summary: 'Working across product engineering, active feature development, and quality validation, with ownership spanning UI prototyping, building product functionality, and release quality.',
     whatIWorkedOn: [
-      'Led manual QA across core product workflows and releases.',
-      'Designed and executed test cases for critical product functionality.',
-      'Identified, documented, and tracked 80+ critical defects using ClickUp.',
-      'Worked closely with engineering and product teams to validate fixes and release quality.',
-      'Contributed to UI prototyping, wireframing, and high-fidelity product screens.',
+      'Actively build and develop product features, operational workflows, and software components.',
+      'Contribute to UI prototyping, wireframing, and production-ready product screens.',
+      'Bridge product thinking, feature development, and quality engineering to deliver reliable software.',
+      'Lead manual testing and functional validation across core product releases.',
       'Worked on Warehouse Management System workflows including outbound, inbound, replenishment, PTL, and strategy-based operations.',
-      'Helped connect product requirements, usability, and quality validation.'
+      'Identified, documented, and tracked 80+ critical defects using ClickUp.',
+      'Collaborate closely with engineering to validate fixes, close defects, and ensure release readiness.'
     ],
-    tools: ['Manual QA', 'Product Engineering', 'WMS', 'Product Design', 'Defect Tracking', 'Release Quality'],
+    tools: ['Product Development', 'Software Engineering', 'UI Prototyping', 'WMS', 'Release Quality', 'Defect Tracking'],
     metrics: [
-      { label: 'ROLE SCOPE', value: 'QA + Product Engineering' },
-      { label: 'DEFECTS TRACKED', value: '80+ Critical (ClickUp)' },
+      { label: 'ROLE SCOPE', value: 'Product Eng & Development' },
+      { label: 'BUILD FOCUS', value: 'Feature Delivery & UI Prototypes' },
       { label: 'DOMAIN', value: 'WMS Core Operations' },
-      { label: 'IMPACT', value: 'Release Readiness & Prototypes' }
+      { label: 'IMPACT', value: 'Production Releases & Quality' }
     ]
   },
   {
@@ -65,7 +65,7 @@ const experiencesData = [
     badgeType: 'amber',
     isPromoted: false,
     isProgression: true,
-    progressionRelation: 'Stepped up into Full-Time QA / Product Engineering at StackPro',
+    progressionRelation: 'Stepped up into Full-Time Product Engineering & QA at StackPro',
     stageId: 'stage-03',
     summary: 'Joined StackPro as a QA Engineering Intern, working primarily on manual testing and validation of enterprise warehouse and distribution workflows.',
     whatIWorkedOn: [
@@ -153,23 +153,15 @@ const experiencesData = [
   }
 ];
 
-// ─── 2. CAREER TRAJECTORY STAGES (CHRONOLOGICAL EVOLUTION: DEV → QA → ENTERPRISE QA → QA + PRODUCT) ───
+// ─── 2. CAREER TRAJECTORY STAGES (ALIGNED NEWEST → OLDEST MATCHING CAREER MAP) ───
 const trajectoryStages = [
   {
-    stageId: 'stage-01',
-    stageNum: 'STAGE 01',
-    roleTitle: 'Software Engineering',
-    company: 'Amatres Technologies',
-    desc: 'Backend development, APIs and cloud infrastructure.',
-    expId: 'amatres-technologies'
-  },
-  {
-    stageId: 'stage-02',
-    stageNum: 'STAGE 02',
-    roleTitle: 'Quality Engineering',
-    company: 'StackBOX',
-    desc: 'Manual testing, functional validation and defect analysis.',
-    expId: 'stackbox-qa'
+    stageId: 'stage-04',
+    stageNum: 'STAGE 04',
+    roleTitle: 'Product Engineering & Development',
+    company: 'StackPro Technologies',
+    desc: 'Active feature development, building product features, UI prototyping, and end-to-end quality.',
+    expId: 'stackpro-fulltime'
   },
   {
     stageId: 'stage-03',
@@ -180,12 +172,20 @@ const trajectoryStages = [
     expId: 'stackpro-intern'
   },
   {
-    stageId: 'stage-04',
-    stageNum: 'STAGE 04',
-    roleTitle: 'QA + Product Engineering',
-    company: 'StackPro Technologies',
-    desc: 'Broader ownership across quality, product thinking and product development.',
-    expId: 'stackpro-fulltime'
+    stageId: 'stage-02',
+    stageNum: 'STAGE 02',
+    roleTitle: 'Quality Engineering',
+    company: 'StackBOX',
+    desc: 'Manual testing, functional validation and defect analysis.',
+    expId: 'stackbox-qa'
+  },
+  {
+    stageId: 'stage-01',
+    stageNum: 'STAGE 01',
+    roleTitle: 'Software Engineering',
+    company: 'Amatres Technologies',
+    desc: 'Backend development, APIs and cloud infrastructure.',
+    expId: 'amatres-technologies'
   }
 ];
 
@@ -372,7 +372,7 @@ export default function ExperienceSection() {
                     </div>
                     <div className="progression-banner-content">
                       <span className="progression-banner-path">
-                        QA Engineering Intern <span className="progression-arrow">→</span> Full-Time QA / Product Engineering
+                        QA Engineering Intern <span className="progression-arrow">→</span> Full-Time Product Engineering & QA
                       </span>
                     </div>
                   </div>
@@ -466,7 +466,7 @@ export default function ExperienceSection() {
               {/* Trajectory Evolution Summary Footer */}
               <div className="trajectory-footer-evolution">
                 <span className="evolution-label">EVOLUTION:</span>
-                <span className="evolution-flow">Dev → QA → Enterprise QA → QA + Product</span>
+                <span className="evolution-flow">Dev → QA → Enterprise QA → Product Eng &amp; Dev</span>
               </div>
             </div>
 
